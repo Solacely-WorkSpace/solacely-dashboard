@@ -12,7 +12,7 @@ import bed from "@/public/icons/bed.svg";
 
 const Listing = () => {
   return (
-    <section className="container overflow-clip flex-1 ring-1 ring-slate-400 rounded-md py-4 px-2 md:px-8">
+    <section className=" flex-1 px-2 py-4 md:px-8 mx-auto border border-slate-300 rounded-md ">
       <div className=" flex flex-col gap-8">
         <div className=" flex justify-between font-rob">
           <h4 className=" font-bold "> Recently listed property </h4>

@@ -8,9 +8,9 @@ import { CurrencyFormatter } from "@/lib/utils";
 
 const Analytics = () => {
   return (
-    <section className="flex flex-col  px-2 py-4 mx-auto">
-      <div className=" container flex flex-wrap gap-12">
-        <article className="analytic">
+    <section className=" w-full flex flex-col  px-4 py-4 mx-auto ">
+      <div className=" container flex gap-10 flex-wrap mx-auto">
+        <article className="  flex flex-col gap-4 border border-slate-300 px-4 py-4 w-full  md:max-w-[300px] rounded">
           <div className=" bg-green-100 rounded-full p-2 -ml-2">
             <MdGroups3 size={28} className=" text-green-400 " />
           </div>
@@ -27,7 +27,7 @@ const Analytics = () => {
           </div>
         </article>
 
-        <article className=" analytic">
+        <article className="flex flex-col gap-4 border border-slate-300 p-4 rounded w-full md:max-w-[300px]">
           <div className="bg-green-100 p-2 rounded-full -ml-2">
             <BiSolidWalletAlt size={28} className=" text-green-400 " />
           </div>
@@ -47,7 +47,7 @@ const Analytics = () => {
           </div>
         </article>
 
-        <article className=" analytic">
+        <article className=" flex flex-col gap-4 border border-slate-300 py-4 px-8 rounded w-full  md:max-w-[300px]">
           <div className=" bg-green-100 rounded-full p-2 -ml-2">
             <FaBriefcase size={28} className=" text-green-400 " />
           </div>
@@ -61,8 +61,8 @@ const Analytics = () => {
           </div>
         </article>
 
-        <article className=" flex flex-col grow gap-12 ring-1 ring-slate-400 shadow-md py-4 px-8 rounded-lg">
-          <div className=" flex justify-between  md:gap-96">
+        <article className=" flex-1 flex flex-col gap-10 border border-slate-300 px-4 py-8 rounded">
+          <div className=" flex justify-between">
             <div className=" leading-7">
               <h4 className=" text-sm text-slate-400 font-rob">
                 {" "}
@@ -75,7 +75,7 @@ const Analytics = () => {
             </div>
           </div>
 
-          <div className=" flex flex-wrap justify-between font-rob text-[1rem] text-slate-400">
+          <div className=" flex flex-wrap md:flex-nowrap gap-10 font-rob text-[1rem] text-slate-400">
             <div className=" leading-7">
               <h4> Apartment </h4>
               <h2 className="text-black font-bold"> 20 </h2>

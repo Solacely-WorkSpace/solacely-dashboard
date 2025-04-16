@@ -5,7 +5,7 @@ import Listing from "./Listing";
 
 const View = () => {
   return (
-    <section className=" container overflow-clip mx-auto flex flex-wrap-reverse items-baseline md:gap-36 gap-4">
+    <section className=" container overflow-clip mx-auto flex flex-wrap-reverse  justify-center items-baseline gap-8 py-4 px-2">
       <Listing />
       <Chart />
     </section>

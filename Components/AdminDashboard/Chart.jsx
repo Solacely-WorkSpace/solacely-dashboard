@@ -55,8 +55,8 @@ const Chart = () => {
     },
   };
   return (
-    <section className="w-full md:w-72 h-fit ring-1 ring-slate-400 rounded-md">
-      <div className=" flex items-center justify-between px-2 md:px-8 py-4 ">
+    <section className="w-full md:max-w-72 border border-slate-300 h-fit rounded-md">
+      <div className=" flex items-center justify-between px-2 md:px-8 py-2">
         <MdOutlineKeyboardArrowLeft size={25} />
         <p className=" font-bold text-lg "> 2022 </p>
         <MdOutlineKeyboardArrowRight size={25} />
