@@ -11,10 +11,7 @@ const caveat = Caveat({
   subsets: ["latin"],
 });
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-});
+
 
 export const metadata = {
   title: "Solacely",
@@ -26,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${roboto.variable} ${caveat.variable} ${montserrat.variable}antialiased`}
+        className={`${roboto.variable} ${caveat.variable} antialiased`}
       >
         {children}
       </body>

@@ -1,8 +1,12 @@
+import Accounts from "@/Components/Accounts/Accounts";
+import AdminInfo from "@/Components/AdminDashboard/AdminInfo";
+
 const Account = () => {
   return (
-    <>
-      <p> Account </p>
-    </>
+    <section className=" w-full flex flex-col gap-10">
+      <AdminInfo title="Account" />
+      <Accounts />
+    </section>
   );
 };
 

@@ -4,20 +4,23 @@ import { usePathname } from "next/navigation";
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
-  const isSignIn = pathname.includes("sign-in");
+  const isSignIn = pathname.includes("forgotpassword");
   return (
     <main className=" w-full mx-auto flex flex-col items-center justify-center bg-white">
-      {isSignIn ? (
+      {!isSignIn ? (
         <h1 className=" font-bold font-rob text-2xl mt-10">
           {" "}
           Sign in to Solacely{" "}
         </h1>
       ) : (
-        <div className=" flex flex-col gap-4 w-full justify-center items-center mt-10">
-          <h1 className=" text-2xl font-bold font-rob ">Getting Started</h1>
-          <p className=" text-slate-400 text-sm font-rob italic">
+        <div className=" flex flex-col justify-center items-center gap-4">
+          <h1 className=" font-bold font-rob text-3xl mt-10">
             {" "}
-            Please fill in the form below to create an account
+            Forgot Password{" "}
+          </h1>
+          <p className=" font-medium text-lg text-gray-400 italic">
+            For security purposes, no withdrawal are permitted for 24 hours
+            after passsword change
           </p>
         </div>
       )}

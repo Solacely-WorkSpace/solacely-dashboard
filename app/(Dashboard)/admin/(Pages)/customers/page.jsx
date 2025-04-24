@@ -1,7 +1,9 @@
+import AdminInfo from "@/Components/AdminDashboard/AdminInfo";
+
 const Customers = () => {
   return (
     <>
-      <p>Cutstomers</p>
+      <AdminInfo title="Customers" />
     </>
   );
 };

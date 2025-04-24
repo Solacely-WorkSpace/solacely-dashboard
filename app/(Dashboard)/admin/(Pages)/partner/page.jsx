@@ -1,7 +1,9 @@
+import AdminInfo from "@/Components/AdminDashboard/AdminInfo";
+
 const Partner = () => {
   return (
     <>
-      <p> Partner </p>
+      <AdminInfo title=" Partners " />
     </>
   );
 };

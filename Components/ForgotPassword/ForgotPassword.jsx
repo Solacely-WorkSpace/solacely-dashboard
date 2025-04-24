@@ -8,6 +8,7 @@ import { Button } from "../ui/button";
 import { ForgotPasswordSchema } from "@/lib/utils";
 import logo from "@/public/icons/logo.svg";
 import Image from "next/image";
+import Link from "next/link";
 
 const ForgotPassword = () => {
   const form = useForm({
@@ -46,6 +47,12 @@ const ForgotPassword = () => {
           </Button>
         </form>
       </Form>
+      <div className=" text-center mt-10">
+        <Link href="/" className=" text-primary text-sm font-bold py-4">
+          {" "}
+          Never Mind, I got it.{" "}
+        </Link>
+      </div>
     </section>
   );
 };

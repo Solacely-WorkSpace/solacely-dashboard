@@ -1,14 +1,14 @@
-// Tis is the main page for the sign up process, or creating new users.
-import Auth from "@/Components/SignUp/Auth";
+// Tis is the main page for the admin sign in
+import Main from "@/Components/SignIn/Main";
 
 import React from "react";
 
-const signUp = () => {
+const signIn = () => {
   return (
     <>
-      <Auth />
+      <Main />
     </>
   );
 };
 
-export default signUp;
+export default signIn;

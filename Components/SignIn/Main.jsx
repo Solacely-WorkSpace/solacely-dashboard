@@ -50,15 +50,7 @@ const Main = () => {
             label="Password"
           />
 
-          <div className=" flex justify-between items-center mb-4 px-2">
-            <p className=" flex gap-2 text-slate-400 text-sm font-rob font-medium">
-              {" "}
-              Don't have an account?{" "}
-              <Link href="/" className=" text-tertially font-bold">
-                {" "}
-                Signup{" "}
-              </Link>
-            </p>
+          <div className=" ml-auto">
             <Link
               href="/forgotpassword"
               className=" text-sm text-tertially font-bold "
