@@ -31,6 +31,7 @@ const TableLayout = () => {
           " flex items-center text-slate-300 border border-slate-300 py-2 px-4 w-full md:max-w-[15%] rounded-md"
         }
         container={" flex gap-2 justify-end items-center px-4 md:px-8 mb-8"}
+        word="Search User"
       />
       <div>
         <Table>

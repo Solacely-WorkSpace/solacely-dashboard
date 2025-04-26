@@ -4,7 +4,7 @@ import { FaSearch } from "react-icons/fa";
 import { Button } from "../ui/button";
 import { useState } from "react";
 
-const Search = ({ button, style, container }) => {
+const Search = ({ button, style, container, word }) => {
   const [search, setSearch] = useState("");
 
   const handleChange = (e) => {
@@ -25,7 +25,7 @@ const Search = ({ button, style, container }) => {
         />
       </div>
 
-      <Button className={button}> Search Users </Button>
+      <Button className={button}> {word} </Button>
     </div>
   );
 };

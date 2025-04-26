@@ -12,12 +12,18 @@ import Link from "next/link";
 import { AdminDashboardConstant } from "@/Constant";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { SidebarMenu, SidebarMenuButton } from "../ui/sidebar";
+import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 
 const SidebarInfo = () => {
+  const router = useRouter();
   const [show, setShow] = useState(false);
 
   const [active, setActive] = useState(0);
+
+  const handleClick = (path) => {
+    router.replace(path);
+  };
 
   return (
     <>
@@ -56,7 +62,52 @@ const SidebarInfo = () => {
                 </SidebarMenuButton>
               </Link>
               {index === 1 ? (
-                <div className={show ? " block" : " hidden"}> Hello World </div>
+                <div
+                  className={
+                    show
+                      ? " flex flex-col gap-4 items-start text-gray-300 font-medium px-4 py-2"
+                      : " hidden"
+                  }
+                >
+                  <Button
+                    onClick={() => {
+                      handleClick("/admin/spaces");
+                    }}
+                    className=" bg-transparent text-slate-300 shadow-none hover:bg-transparent hover:text-primary cursor-pointer"
+                  >
+                    Apartment
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      handleClick("/admin/spaces/co-space");
+                    }}
+                    className=" bg-transparent text-slate-300 shadow-none hover:bg-transparent hover:text-primary cursor-pointer"
+                  >
+                    Co-Working Space
+                  </Button>
+                  <Button
+                    disabled
+                    className=" flex gap-8 items-end bg-transparent text-slate-400 font-medium"
+                  >
+                    {" "}
+                    Hotel{" "}
+                    <span className=" bg-tertially text-white text-[8px] rounded p-1 ">
+                      {" "}
+                      Coming Soon{" "}
+                    </span>
+                  </Button>
+                  <Button
+                    disabled
+                    className=" flex gap-8 items-end bg-transparent text-gray-400 font-medium"
+                  >
+                    {" "}
+                    Real Estate{" "}
+                    <span className=" bg-tertially text-[8px] rounded p-1 text-white">
+                      {" "}
+                      Coming Soon{" "}
+                    </span>
+                  </Button>
+                </div>
               ) : (
                 ""
               )}

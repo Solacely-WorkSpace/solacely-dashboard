@@ -1,9 +1,12 @@
-const Spaces = () => {
+import AdminInfo from "@/Components/AdminDashboard/AdminInfo";
+import Apartment from "@/Components/Space/Apartment";
+const ApartmentPage = () => {
   return (
-    <>
-      <p> Spaces</p>
-    </>
+    <section className=" w-full flex flex-col gap-10">
+      <AdminInfo title={"Apartment"} />
+      <Apartment />
+    </section>
   );
 };
 
-export default Spaces;
+export default ApartmentPage;

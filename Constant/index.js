@@ -7,6 +7,7 @@ import { FaCommentDots, FaHandshakeSimple } from "react-icons/fa6"
 
 import pink from "@/public/icons/green.svg";
 import yellow from "@/public/icons/yellow.svg"
+import { Verified } from "lucide-react";
 // DashBoard Menu Dataset
 
 
@@ -326,8 +327,124 @@ const Comments = [
 ]
 
 
+const agencyInfo = [ 
+    
+    {
+        avatar: yellow,
+     name: "Samson John",
+     email: "John@gmail.com",
+     location: "Lagos, Nigeria",
+     properties: " 4",
+     phoneNumber: "+234890755623",
+     status: "verified",
+     role: "landlord"
+},
+    
+    {
+        avatar: pink,
+     name: "Samson John",
+     email: "John@gmail.com",
+     location: "Lagos, Nigeria",
+     properties: " 4",
+     phoneNumber: "+234890755623",
+     status: "verified",
+     role: "landlord"
+},
+    
+    {
+        avatar: yellow,
+     name: "Samson John",
+     email: "John@gmail.com",
+     location: "Lagos, Nigeria",
+     properties: " 4",
+     phoneNumber: "+234890755623",
+     status: "unverified",
+     role: "agent"
+},
+    
+    {
+        avatar: pink,
+     name: "Samson John",
+     email: "John@gmail.com",
+     location: "Lagos, Nigeria",
+     properties: " 4",
+     phoneNumber: "+234890755623",
+     status: "verified",
+     role: "landlord"
+},
+    
+    {
+        avatar: yellow,
+     name: "Samson John",
+     email: "John@gmail.com",
+     location: "Lagos, Nigeria",
+     properties: " 4",
+     phoneNumber: "+234890755623",
+     status: "verified",
+     role: "landlord"
+},
+    
+    {
+        avatar: yellow,
+     name: "Samson John",
+     email: "John@gmail.com",
+     location: "Lagos, Nigeria",
+     properties: " 4",
+     phoneNumber: "+234890755623",
+     status: "verified",
+     role: "agency"
+},
+    
+    {
+        avatar: pink,
+     name: "Samson John",
+     email: "John@gmail.com",
+     location: "Lagos, Nigeria",
+     properties: " 4",
+     phoneNumber: "+234890755623",
+     status: "verified",
+     role: "agency"
+},
+    
+    {
+        avatar: pink,
+     name: "Samson John",
+     email: "John@gmail.com",
+     location: "Lagos, Nigeria",
+     properties: " 4",
+     phoneNumber: "+234890755623",
+     status: "unverified",
+     role: "landlord"
+},
+    
+    {
+        avatar: yellow,
+     name: "Samson John",
+     email: "John@gmail.com",
+     location: "Lagos, Nigeria",
+     properties: " 4",
+     phoneNumber: "+234890755623",
+     status: "verified",
+     role: "landlord"
+},
+    
+    {
+    avatar: pink,
+     name: "Samson John",
+     email: "John@gmail.com",
+     location: "Lagos, Nigeria",
+     properties: " 4",
+     phoneNumber: "+234890755623",
+     status: "verified",
+     role: "agent"
+},
+
+]
+
+
 export {
     AdminDashboardConstant,
     partnerInfo,
-    Comments
+    Comments,
+    agencyInfo
 }
