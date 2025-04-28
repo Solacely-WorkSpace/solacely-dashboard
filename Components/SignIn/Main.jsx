@@ -5,8 +5,10 @@ import { Form } from "../ui/form";
 import { LoginSchema } from "@/lib/utils";
 import CustomInput from "../SignUp/CustomInput";
 import { Button } from "../ui/button";
-import logo from "@/public/icons/logo.svg";
+import SideImage from "../SignUp/SideImage";
 import Link from "next/link";
+import React from "react";
+import logo from "@/public/icons/logo.svg";
 import Image from "next/image";
 
 const Main = () => {
@@ -23,45 +25,59 @@ const Main = () => {
   };
 
   return (
-    <section className=" w-full relative">
-      <div className=" flex gap-2 justify-center items-center mb-36 mr-8">
-        <Image src={logo} alt="logo" />
-        <h1 className=" font-bold font-rob text-2xl"> Solacely </h1>
-      </div>
-
-      <Form {...form} className=" w-full">
-        <form
-          onSubmit={form.handleSubmit(Login)}
-          className=" w-full flex flex-col gap-8 px-8"
-        >
-          <CustomInput
-            control={form.control}
-            placeholder="Enter your email"
-            type="email"
-            name="email"
-            label="Email"
-          />
-
-          <CustomInput
-            control={form.control}
-            name="password"
-            type="password"
-            placeholder="Enter your password"
-            label="Password"
-          />
-
-          <div className=" ml-auto">
-            <Link
-              href="/forgotpassword"
-              className=" text-sm text-tertially font-bold "
+    <section className="w-full flex">
+      <SideImage />
+      <div className=" w-full mx-auto ">
+        <div className=" flex gap-2 justify-end p-4">
+          <Image src={logo} alt="logo" />
+          <h1 className=" font-bold font-rob text-2xl text-purple-900">
+            {" "}
+            Solacely{" "}
+          </h1>
+        </div>
+        <div className=" w-full mx-auto my-auto">
+          <h1 className=" text-center text-xl font-bold mt-20">
+            {" "}
+            Sign in to Solacely
+          </h1>
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(Login)}
+              className=" max-w-sm mx-auto mt-10 flex flex-col gap-4"
             >
-              Forgot Password
-            </Link>
-          </div>
+              <CustomInput
+                control={form.control}
+                placeholder="Enter your email"
+                type="email"
+                name="email"
+                label="Email"
+              />
 
-          <Button type="submit"> Login </Button>
-        </form>
-      </Form>
+              <CustomInput
+                control={form.control}
+                name="password"
+                type="password"
+                placeholder="Enter your password"
+                label="Password"
+              />
+
+              <div className=" ml-auto">
+                <Link
+                  href="/forgotpassword"
+                  className=" text-sm text-tertially font-bold "
+                >
+                  Forgot Password
+                </Link>
+              </div>
+
+              <Button type="submit" className=" py-5">
+                {" "}
+                Login{" "}
+              </Button>
+            </form>
+          </Form>
+        </div>
+      </div>
     </section>
   );
 };

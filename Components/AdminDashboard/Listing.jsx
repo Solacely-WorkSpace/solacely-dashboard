@@ -15,107 +15,116 @@ const Listing = () => {
     <section className=" flex-1 px-2 py-4 md:px-8 mx-auto border border-slate-300 rounded-md ">
       <div className=" flex flex-col gap-8">
         <div className=" flex justify-between font-rob">
-          <h4 className=" font-bold "> Recently listed property </h4>
+          <h4 className=" font-semibold "> Recently listed property </h4>
           <article className=" flex gap-4 ">
-            <p className=" font-bold text-sm"> View all </p>
+            <p className=" font-medium text-[0.8rem]"> View all </p>
             <MdOutlineKeyboardArrowRight />
           </article>
         </div>
 
-        <div className=" flex flex-col gap-8">
-          <article className=" flex flex-wrap gap-12">
+        <div className=" flex flex-col gap-4 ">
+          <article className=" flex flex-wrap gap-4 border-b border-b-neutral-200 py-4">
             <Image
               src={banana}
               alt="banana island"
-              className=" w-full md:w-72 rounded-md"
+              className=" w-full md:max-w-[35%]  rounded-md"
             />
-            <div className=" flex-1 flex flex-col gap-4 font-rob">
-              <h5 className=" text-xs text-slate-400 "> Apartment | Lagos </h5>
-              <h2 className=" font-bold text-lg">
+            <div className=" flex-1 flex flex-col gap-2 font-rob">
+              <h5 className=" text-[0.7rem] text-neutral-400 ">
+                {" "}
+                Apartment | Lagos{" "}
+              </h5>
+              <h2 className=" font-semibold text-[1rem]">
                 {" "}
                 Luxury 3 Bedroom Apartment at Epicentrum{" "}
               </h2>
-              <div className=" flex gap-8 items-start text-slate-400">
-                <div className=" flex gap-2 ">
+              <div className=" flex gap-8 items-start ">
+                <div className=" flex gap-1 ">
                   <Image src={bed} alt="bed" />
-                  <p className=" text-sm font-semibold"> 3 Bed </p>
+                  <p className=" text-[0.8rem] "> 3 Bed </p>
                 </div>
-                <div className=" flex gap-2">
+                <div className=" flex gap-1">
                   <Image src={bath} alt="bath" />
-                  <p className=" font-semibold text-sm"> 1 Bath</p>
+                  <p className=" text-[0.8rem] "> 1 Bath</p>
                 </div>
                 <div className=" flex gap-2">
                   <Image src={meterRule} alt="meter" />
-                  <p className=" font-semibold text-sm"> 8,725sqft </p>
+                  <p className=" text-[0.8rem] "> 8,725sqft </p>
                 </div>
               </div>
               <div className=" flex gap-4 ">
-                <MdLocationPin className=" text-slate-400" />
-                <p className=" text-sm text-slate-400 font-semibold">
+                <MdLocationPin className=" text-neutral-600" />
+                <p className=" text-[0.8rem] text-neutral-600 ">
                   {" "}
                   1998 Wufma Minnessota, Festac{" "}
                 </p>
               </div>
-              <h3 className=" text-xl text-tertially font-bold mt-4">
+              <h3 className=" text-lg text-tertially font-medium mt-4">
                 {" "}
                 ₦24,000,000/ Year{" "}
               </h3>
             </div>
           </article>
 
-          <article className=" flex flex-wrap gap-12 ">
+          <article className=" flex gap-4 border-b border-b-neutral-200 py-4">
             <Image
               src={bn}
               alt="banana island"
-              className=" w-full md:w-72 rounded-md"
+              className=" w-full md:max-w-[35%] rounded-md"
             />
-            <div className=" flex-1 flex flex-col gap-4">
-              <h5 className=" text-xs text-slate-400"> Apartment | Lagos </h5>
-              <h2 className=" text-lg font-bold">
+            <div className=" flex-1 flex flex-col gap-2">
+              <h5 className=" text-[0.7rem] text-neutral-400 ">
+                {" "}
+                Apartment | Lagos{" "}
+              </h5>
+              <h2 className=" text-[1rem] font-medium">
                 {" "}
                 Luxury 3 Bedroom Apartment at Epicentrum{" "}
               </h2>
-              <div className=" flex items-start gap-8 text-slate-400 font-semibold">
-                <div className=" text-sm flex gap-2">
+              <div className=" flex items-start gap-8">
+                <div className=" text-[0.8rem] flex gap-1">
                   <Image src={bed} alt="bed" />
                   <p> 3 Bed </p>
                 </div>
-                <div className=" flex gap-2 text-sm">
+                <div className=" flex gap-1 text-[0.8rem]">
                   <Image src={bath} alt="bath" />
                   <p> 1 Bath</p>
                 </div>
-                <div className=" flex gap-2 text-sm">
+                <div className=" flex gap-1 text-[0.8rem]">
                   <Image src={meterRule} alt="meter" />
                   <p> 8,725sqft </p>
                 </div>
               </div>
-              <div className=" flex gap-4 text-slate-400 font-semibold items-start">
+              <div className=" flex gap-4 text-neutral-600 items-start">
                 <MdLocationPin />
-                <p className=" font-rob text-sm">
+                <p className=" font-rob text-[0.8rem]">
                   {" "}
                   1998 Wufma Minnessota, Festac{" "}
                 </p>
               </div>
-              <h3 className=" text-tertially text-xl font-bold mt-4">
+              <h3 className=" text-tertially text-lg font-medium mt-4">
                 {" "}
                 ₦24,000,000/ Year{" "}
               </h3>
             </div>
           </article>
 
-          <article className=" flex flex-wrap gap-12">
+          <article className=" flex gap-4 border-b border-b-neutral-200 py-4">
             <Image
               src={island}
               alt="banana island"
-              className=" w-full md:w-72 rounded-md"
+              className=" w-full md:max-w-[35%] rounded-md"
             />
-            <div className=" flex flex-col gap-4">
-              <h5 className=" text-xs text-slate-400"> Apartment | Lagos </h5>
-              <h2 className=" text-lg font-bold ">
+            <div className=" flex flex-col gap-2">
+              <h5 className=" text-[0.7rem] text-neutral-400">
+                {" "}
+                Apartment | Lagos{" "}
+              </h5>
+              <h2 className=" text-[1rem] font-medium">
                 {" "}
                 Luxury 3 Bedroom Apartment at Epicentrum{" "}
               </h2>
-              <div className=" flex gap-8 text-slate-400 text-sm font-semibold">
+              <div className=" flex gap-8 text-[0.8rem]">
                 <div className=" flex gap-2">
                   <Image src={bed} alt="bed" />
                   <p> 3 Bed </p>
@@ -129,14 +138,14 @@ const Listing = () => {
                   <p> 8,725sqft </p>
                 </div>
               </div>
-              <div className=" flex gap-4 text-slate-400 font-semibold">
+              <div className=" flex gap-4 text-neutral-600 ">
                 <MdLocationPin />
-                <p className=" text-sm font-rob">
+                <p className=" text-[0.8rem] font-rob">
                   {" "}
                   1998 Wufma Minnessota, Festac{" "}
                 </p>
               </div>
-              <h3 className=" text-xl text-tertially font-bold mt-4">
+              <h3 className=" text-lg text-tertially font-medium mt-4">
                 {" "}
                 ₦24,000,000/ Year{" "}
               </h3>

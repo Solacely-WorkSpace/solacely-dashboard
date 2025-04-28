@@ -41,13 +41,14 @@ const Chart = () => {
 
     plugins: {
       legend: {
+        text: "abuja",
         position: "bottom",
         labels: {
           boxWidth: 10,
           boxHeight: 10,
           padding: 20,
           font: {
-            size: 14,
+            size: 10,
             weight: "bold",
           },
         },
@@ -55,11 +56,16 @@ const Chart = () => {
     },
   };
   return (
-    <section className="w-full md:max-w-72 border border-slate-300 h-fit rounded-md">
+    <section className=" relative w-full md:max-w-72 border border-slate-300 h-fit rounded-md">
       <div className=" flex items-center justify-between px-2 md:px-8 py-2">
         <MdOutlineKeyboardArrowLeft size={25} />
         <p className=" font-bold text-lg "> 2022 </p>
         <MdOutlineKeyboardArrowRight size={25} />
+      </div>
+
+      <div className=" absolute -translate-y-1/2 -translate-1/2 top-1/2 left-1/2 flex flex-col gap-2 justify-center items-center">
+        <p className=" text-lg font-bold"> 22,870 </p>
+        <span className=" text-neutral-500 text-lg ">Visitors this year </span>
       </div>
 
       <Doughnut data={data} options={options} />

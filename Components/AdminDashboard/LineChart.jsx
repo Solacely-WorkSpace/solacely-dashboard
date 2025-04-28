@@ -11,7 +11,6 @@ import {
   Legend,
   Tooltip,
   Title,
-  scales,
 } from "chart.js";
 
 const LineChart = () => {
@@ -49,14 +48,26 @@ const LineChart = () => {
         ],
         borderColor: "#60D0B2",
         backgroundColor: "#60D0B2",
-
         tension: 0.4,
+        tooltip: {
+          callback: {
+            title: [
+              34000, 25000, 38000, 45000, 41000, 28000, 39000, 44800, 22300,
+              45000, 43200, 30500,
+            ],
+          },
+        },
       },
     ],
   };
 
   const options = {
     plugins: {
+      tooltip: {
+        backgroundColor: "#515151",
+        displayColors: false,
+        padding: 10,
+      },
       legend: {
         display: false,
       },
@@ -64,23 +75,16 @@ const LineChart = () => {
       title: {
         display: false,
       },
-
-      tooltip: {
-        backgroundColor: "#515151",
-        bodySpacing: 10,
-        padding: 4,
-        displaColors: false,
-      },
     },
 
     layout: {
-      padding: 10,
+      padding: 30,
     },
 
     scales: {
       y: {
-        min: 100000,
-        max: 500000,
+        min: 10000,
+        max: 50000,
         ticks: {
           callback: (value) => {
             return value >= 1000 ? value / 1000 + "k" : value;
@@ -91,10 +95,10 @@ const LineChart = () => {
   };
 
   return (
-    <section className=" container border border-slate-300 rounded-md px-8 py-8 ">
-      <div className=" flex justify-between items-center gap-4 py-4 px-8">
+    <section className=" container  ">
+      <div className="  flex justify-between items-center gap-4 py-4 px-8">
         <div className=" flex flex-col gap-2 ">
-          <h5 className=" font-medium font-rob text-slate-400 text-lg">
+          <h5 className=" font-medium font-rob text-neutral-400 text-lg">
             Overall revenue
           </h5>
           <p className=" flex gap-2 font-bold text-xl text-black ">

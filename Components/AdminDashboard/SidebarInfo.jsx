@@ -44,7 +44,7 @@ const SidebarInfo = () => {
                   className={
                     active === index
                       ? " bg-primary shadow-sm shadow-primary py-6 px-4 text-white fill-white hover:shadow-none transition-colors duration-300 hover:text-white hover:bg-primary"
-                      : " flex items-center py-6 px-4 gap-4 bg-transparent shadow-none text-slate-400 fill-slate-400 cursor-pointer transition-colors duration-300 hover:text-slate-400 hover:bg-slate-200"
+                      : " flex items-center py-6 px-4 gap-4 bg-transparent shadow-none text-neutral-400 fill-slate-400 cursor-pointer transition-colors duration-300 hover:text-slate-400 hover:bg-slate-200"
                   }
                 >
                   {item.src}
@@ -73,7 +73,7 @@ const SidebarInfo = () => {
                     onClick={() => {
                       handleClick("/admin/spaces");
                     }}
-                    className=" bg-transparent text-slate-300 shadow-none hover:bg-transparent hover:text-primary cursor-pointer"
+                    className=" bg-transparent text-neutral-400 shadow-none hover:bg-transparent hover:text-primary cursor-pointer"
                   >
                     Apartment
                   </Button>
@@ -81,13 +81,13 @@ const SidebarInfo = () => {
                     onClick={() => {
                       handleClick("/admin/spaces/co-space");
                     }}
-                    className=" bg-transparent text-slate-300 shadow-none hover:bg-transparent hover:text-primary cursor-pointer"
+                    className=" bg-transparent text-neutral-400 shadow-none hover:bg-transparent hover:text-primary cursor-pointer"
                   >
-                    Co-Working Space
+                    Co-Living Space
                   </Button>
                   <Button
                     disabled
-                    className=" flex gap-8 items-end bg-transparent text-slate-400 font-medium"
+                    className=" flex gap-8 items-end bg-transparent text-neutral-400 font-medium"
                   >
                     {" "}
                     Hotel{" "}
@@ -98,7 +98,7 @@ const SidebarInfo = () => {
                   </Button>
                   <Button
                     disabled
-                    className=" flex gap-8 items-end bg-transparent text-gray-400 font-medium"
+                    className=" flex gap-8 items-end bg-transparent text-neutral-400 font-medium"
                   >
                     {" "}
                     Real Estate{" "}
