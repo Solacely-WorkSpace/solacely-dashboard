@@ -27,7 +27,7 @@ const SidebarInfo = () => {
 
   return (
     <>
-      <SidebarMenu className="container mx-auto flex flex-col gap-6 py-8 px-2">
+      <SidebarMenu className="container mx-auto flex flex-col gap-2 py-8 px-2">
         {AdminDashboardConstant.map((item, index) => {
           return (
             <div key={index}>

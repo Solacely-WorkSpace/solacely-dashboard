@@ -199,7 +199,7 @@ const Apartment = () => {
                 </p>
               </TableCell>
               <TableCell>
-                <div className=" flex flex-col gap-2">
+                <div className=" flex flex-col">
                   <h3 className=" text-[16px] font-medium"> Apartment</h3>
                   <p className=" text-gray-400 text-[15px]"> Building </p>
                 </div>

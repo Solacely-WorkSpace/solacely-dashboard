@@ -9,6 +9,7 @@ import { ForgotPasswordSchema } from "@/lib/utils";
 import logo from "@/public/icons/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
+import SideImage from "../SignUp/SideImage";
 
 const ForgotPassword = () => {
   const form = useForm({
@@ -23,35 +24,52 @@ const ForgotPassword = () => {
   };
 
   return (
-    <section className=" w-full items-center justify-center">
-      <div className=" flex gap-2 justify-center items-center mb-32">
-        <Image src={logo} alt="logo" />
-        <p className=" font-rob font-bold text-2xl text-black "> Solacely </p>
-      </div>
-      <Form {...form} className=" w-full flex justify-center items-center">
-        <form
-          onSubmit={form.handleSubmit(PasswordReset)}
-          className=" w-full flex flex-col gap-8 px-8"
-        >
-          <CustomInput
-            control={form.control}
-            placeholder="Enter your email"
-            label="Email"
-            name="email"
-            type="email"
-          />
+    <section className=" w-full flex">
+      <SideImage />
 
-          <Button type="submit " className=" py-6 w-full">
+      <div className=" w-full mx-auto">
+        <div className=" flex gap-2 justify-end p-4">
+          <Image src={logo} alt="logo" />
+          <p className=" font-rob font-bold text-2xl text-purple-900">
             {" "}
-            Continue{" "}
-          </Button>
-        </form>
-      </Form>
-      <div className=" text-center mt-10">
-        <Link href="/" className=" text-primary text-sm font-bold py-4">
-          {" "}
-          Never Mind, I got it.{" "}
-        </Link>
+            Solacely{" "}
+          </p>
+        </div>
+        <div className=" w-full md:max-w-sm flex mx-auto flex-col">
+          <div className=" flex flex-col gap-4 mb-10 mt-20 items-center justify-center border-b pb-8 border-neutral-200">
+            <h1 className=" text-xl font-bold font-rob "> Forgot Password </h1>
+            <p className=" text-xs text-neutral-500 text-center">
+              {" "}
+              For security purposes, no withdrawals are permitted for 24 hours
+              after password change{" "}
+            </p>
+          </div>
+          <Form {...form} className=" w-full flex justify-center items-center">
+            <form
+              onSubmit={form.handleSubmit(PasswordReset)}
+              className=" w-full flex flex-col gap-8 px-8"
+            >
+              <CustomInput
+                control={form.control}
+                placeholder="Your Email"
+                label="Enter Your Account Email"
+                name="email"
+                type="email"
+              />
+
+              <Button type="submit " className=" py-6 w-full">
+                {" "}
+                Continue{" "}
+              </Button>
+            </form>
+          </Form>
+          <div className=" text-center mt-10">
+            <Link href="/" className=" text-primary text-sm font-bold py-4">
+              {" "}
+              Never Mind, I got it.{" "}
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   );

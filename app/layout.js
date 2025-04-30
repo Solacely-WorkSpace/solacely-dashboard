@@ -1,4 +1,4 @@
-import { Roboto, Caveat, Montserrat } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -6,10 +6,7 @@ const roboto = Roboto({
   subsets: ["latin"],
 });
 
-const caveat = Caveat({
-  variable: "--font-caveat",
-  subsets: ["latin"],
-});
+
 
 
 
@@ -23,7 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${roboto.variable} ${caveat.variable} antialiased`}
+        className={`${roboto.variable} antialiased`}
       >
         {children}
       </body>

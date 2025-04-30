@@ -10,8 +10,15 @@ import Link from "next/link";
 import React from "react";
 import logo from "@/public/icons/logo.svg";
 import Image from "next/image";
+import { useState } from "react";
+import Endpoint from "@/api/Endpoint";
+import { useRouter } from "next/navigation";
+import axios, { formToJSON } from "axios";
 
 const Main = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+
   const form = useForm({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -20,8 +27,27 @@ const Main = () => {
     },
   });
 
-  const Login = (data) => {
-    console.log(data);
+  const Login = async (data) => {
+    const { email, password } = data;
+    try {
+      setIsLoading(true);
+
+      const response = await Endpoint.post("login/", {
+        email: email,
+        password: password,
+      });
+
+      if (response.status == 200) {
+        setIsLoading(false);
+        router.push("/");
+      } else {
+        setIsLoading(false);
+        console.log("Login failed");
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.log(`error: ${error}`);
+    }
   };
 
   return (
@@ -70,9 +96,8 @@ const Main = () => {
                 </Link>
               </div>
 
-              <Button type="submit" className=" py-5">
-                {" "}
-                Login{" "}
+              <Button type="submit" className=" py-5" disabled={isLoading}>
+                {isLoading ? "Loading..." : "Login"}
               </Button>
             </form>
           </Form>

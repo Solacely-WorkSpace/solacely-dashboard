@@ -7,7 +7,7 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 const AdminInfo = ({ param, title }) => {
   return (
-    <div className="container flex justify-between w-full mx-auto bg-white h-fit items-center shadow-sm p-4">
+    <div className="container flex justify-between w-full mx-auto bg-white h-fit items-center p-4">
       {param === "dashboard" ? (
         <div className=" font-rob flex flex-col gap-0.5">
           <h2 className=" font-bold text-md ">Hi, Panter W.</h2>
