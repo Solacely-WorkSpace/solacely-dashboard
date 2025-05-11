@@ -14,6 +14,7 @@ import { cn, ListingSchema } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
+import Image from "next/image";
 
 const BasicInfo = () => {
   const inputs = [
@@ -26,6 +27,8 @@ const BasicInfo = () => {
   ];
 
   const [activeInput, setActiveInput] = useState("livingroom");
+
+  const [preview, setPreview] = useState({});
 
   const filteredInputs = inputs.filter(
     (input) => input !== "video" && input !== "vr"
@@ -436,13 +439,35 @@ const BasicInfo = () => {
                         accept="image/*"
                         className="hidden"
                         onChange={(e) => {
-                          form.setValue(activeInput, e.target.files);
+                          const files = e.target.files?.[0];
+
+                          form.setValue(activeInput, files);
+
+                          if (files) {
+                            const reader = new FileReader();
+                            reader.onloadend = () => {
+                              setPreview((prev) => ({
+                                ...prev,
+                                [activeInput]: reader.result,
+                              }));
+                            };
+                            reader.readAsDataURL(files);
+                          }
                         }}
                       />
                     </FormControl>
                   </FormItem>
                 )}
               />
+
+              {preview[activeInput] && (
+                <Image
+                  src={preview[activeInput]}
+                  alt="Preview"
+                  width={100}
+                  height={100}
+                />
+              )}
             </div>
           </div>
 
