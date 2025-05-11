@@ -1,6 +1,6 @@
 "use client";
 import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import Link from "next/link";
 import { useState } from "react";
 import {
   Select,
@@ -33,7 +33,7 @@ const CoworkingSpace = () => {
 
   return (
     <>
-      <div className=" flex justify-between items-center px-4 mb-10">
+      <div className=" flex justify-between items-center px-4 ">
         <div className=" flex gap-2 items-center px-2 py-2 border border-slate-200 rounded w-full md:max-w-md">
           <CiSearch size={25} />
 
@@ -45,12 +45,14 @@ const CoworkingSpace = () => {
             className="border-none w-full placeholder:text-slate-300"
           />
         </div>
-        <Button className="py-6">
-          {" "}
-          <RiAddBoxFill /> Add nNew Property{" "}
-        </Button>
+        <Link
+          href="/admin/spaces/co-space/co-living"
+          className=" flex gap-2 items-center font-medium bg-primary text-white px-4 py-2 rounded"
+        >
+          <RiAddBoxFill /> Add New Property{" "}
+        </Link>
       </div>
-      <div className=" mb-10">
+      <div className="">
         <div className=" flex gap-10 items-start ">
           <div className=" flex flex-col gap-2">
             <Select>
@@ -175,13 +177,13 @@ const CoworkingSpace = () => {
                 </div>
               </TableCell>
               <TableCell>
-                <p className=" text-orange-400 bg-orange-200 px-4 py-2 rounded w-fit">
+                <p className=" text-orange-400 bg-orange-100 px-4 py-2 rounded w-fit">
                   {" "}
                   Closed{" "}
                 </p>
               </TableCell>
               <TableCell>
-                <div className=" flex flex-col gap-2">
+                <div className=" flex flex-col">
                   <h3 className=" text-[16px] font-medium"> Apartment</h3>
                   <p className=" text-gray-400 text-[15px]"> Building </p>
                 </div>

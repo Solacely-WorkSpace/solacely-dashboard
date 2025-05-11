@@ -24,6 +24,7 @@ import { RiAddBoxFill } from "react-icons/ri";
 import island from "@/public/images/island.png";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const Apartment = () => {
   const [search, setSearch] = useState("");
@@ -45,10 +46,12 @@ const Apartment = () => {
             className="border-none w-full placeholder:text-slate-300"
           />
         </div>
-        <Button className="py-6">
-          {" "}
+        <Link
+          href="spaces/apartment"
+          className=" flex items-center gap-2 bg-primary text-white px-4 py-2 rounded"
+        >
           <RiAddBoxFill /> Add New{" "}
-        </Button>
+        </Link>
       </div>
       <div className=" mb-10">
         <div className=" flex gap-10 items-start ">
@@ -193,7 +196,7 @@ const Apartment = () => {
                 </div>
               </TableCell>
               <TableCell>
-                <p className=" text-orange-400 bg-orange-200 px-4 py-2 rounded w-fit">
+                <p className=" text-orange-400 bg-orange-100 px-4 py-2 rounded w-fit">
                   {" "}
                   Closed{" "}
                 </p>

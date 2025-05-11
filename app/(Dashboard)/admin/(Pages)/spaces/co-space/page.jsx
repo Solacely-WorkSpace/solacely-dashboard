@@ -6,6 +6,7 @@ const CoSpace = () => {
   return (
     <section className=" w-full flex flex-col gap-10 mt-0">
       <AdminInfo title={" Co-Working Space"} />
+      <CoworkingSpace />
     </section>
   );
 };

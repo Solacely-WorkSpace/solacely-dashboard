@@ -1,0 +1,90 @@
+"use client";
+import Link from "next/link";
+import { FaChevronLeft } from "react-icons/fa6";
+import { Button } from "../ui/button";
+import { cn } from "@/lib/utils";
+import BasicInfo from "./BasicInfo";
+import Rto from "./Rto";
+import Payment from "./Payment";
+import { useState } from "react";
+
+const ApartmentListing = () => {
+  const [activeComponent, setActiveComponent] = useState("BasicInfo");
+
+  const renderComponent = () => {
+    switch (activeComponent) {
+      case "BasicInfo":
+        return <BasicInfo />;
+      case "Rto":
+        return <Rto />;
+      case "Payment":
+        return <Payment />;
+      default:
+        return <BasicInfo />;
+    }
+  };
+
+  const handleTabClick = (component) => {
+    setActiveComponent(component);
+  };
+
+  const tabs = [
+    { name: "Basic Information", component: "BasicInfo" },
+    { name: "RTO Settings", component: "Rto" },
+    { name: "Payment Breakdown", component: "Payment" },
+  ];
+
+  return (
+    <div>
+      <Link
+        href="/admin/spaces"
+        className=" flex items-center gap-2 text-gray-500 text-sm font-semibold cursor-pointer"
+      >
+        <FaChevronLeft size={10} />{" "}
+        <span className="text-neutral-500 font-medium text-xs"> Go Back</span>
+      </Link>
+
+      <div className=" flex justify-between items-center mt-10 px-4">
+        <h1 className="text-2xl font-bold"> Property </h1>
+        <div>
+          <Button
+            className={cn(
+              " bg-transparent border border-neutral-200 text-primary p-6 hover:bg-neutral-100 hover:text-neutral-600 transition-all duration-200 ease-in-out cursor-pointer"
+            )}
+          >
+            Cancel
+          </Button>
+          <Button
+            className={cn(
+              " ml-4 p-6 hover:bg-blend-color transition-all duration-200 ease-in-out cursor-pointer"
+            )}
+          >
+            Save
+          </Button>
+        </div>
+      </div>
+
+      <div>
+        <ul className=" inline-flex gap-10 px-4 text-sm text-neutral-500 mt-5">
+          {tabs.map((tab) => (
+            <li
+              key={tab.name}
+              className={`cursor-pointer py-4 ${
+                activeComponent === tab.component
+                  ? "text-primary font-semibold border-b-2 border-primary"
+                  : ""
+              }`}
+              onClick={() => handleTabClick(tab.component)}
+            >
+              {tab.name}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {<div className="mt-10 px-4">{renderComponent()}</div>}
+    </div>
+  );
+};
+
+export default ApartmentListing;
