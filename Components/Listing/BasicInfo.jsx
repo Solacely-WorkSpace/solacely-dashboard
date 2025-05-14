@@ -15,6 +15,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
+import { MdAddBox, MdCancel } from "react-icons/md";
+import Addnew from "./Addnew";
 
 const BasicInfo = () => {
   const inputs = [
@@ -29,6 +31,24 @@ const BasicInfo = () => {
   const [activeInput, setActiveInput] = useState("livingroom");
 
   const [preview, setPreview] = useState({});
+
+  const [inputFields, setInputFields] = useState([""]);
+
+  const addField = () => {
+    setInputFields([...inputFields, ""]);
+  };
+
+  const removeField = (index) => {
+    const newFields = [...inputFields];
+    newFields.splice(index, 1);
+    setInputFields(newFields);
+  };
+
+  const updatedFields = (index, value) => {
+    const newFields = [...inputFields];
+    newFields[index] = value;
+    setInputFields(newFields);
+  };
 
   const filteredInputs = inputs.filter(
     (input) => input !== "video" && input !== "vr"
@@ -561,6 +581,13 @@ const BasicInfo = () => {
               )}
             />
           </div>
+          <Addnew
+            form={form}
+            label={" Maintainance & Repairs"}
+            placeholder={" Repairs "}
+          />
+
+          <Addnew form={form} label={" Defects "} placeholder={" Defects "} />
         </form>
       </Form>
     </div>

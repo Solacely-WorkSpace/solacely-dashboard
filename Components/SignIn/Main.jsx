@@ -11,12 +11,12 @@ import React from "react";
 import logo from "@/public/icons/logo.svg";
 import Image from "next/image";
 import { useState } from "react";
-import Endpoint from "@/api/Endpoint";
 import { useRouter } from "next/navigation";
-import axios, { formToJSON } from "axios";
+import { Login } from "@/lib/auth";
 
 const Main = () => {
   const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
 
   const form = useForm({
@@ -27,27 +27,8 @@ const Main = () => {
     },
   });
 
-  const Login = async (data) => {
-    const { email, password } = data;
-    try {
-      setIsLoading(true);
-
-      const response = await Endpoint.post("login/", {
-        email: email,
-        password: password,
-      });
-
-      if (response.status == 200) {
-        setIsLoading(false);
-        router.push("/");
-      } else {
-        setIsLoading(false);
-        console.log("Login failed");
-      }
-    } catch (error) {
-      setIsLoading(false);
-      console.log(`error: ${error}`);
-    }
+  const onSubmit = async (data) => {
+    Login(data, setIsLoading, router);
   };
 
   return (
@@ -68,7 +49,7 @@ const Main = () => {
           </h1>
           <Form {...form}>
             <form
-              onSubmit={form.handleSubmit(Login)}
+              onSubmit={form.handleSubmit(onSubmit)}
               className=" max-w-sm mx-auto mt-10 flex flex-col gap-4"
             >
               <CustomInput
