@@ -1,5 +1,8 @@
+
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import { UserData } from "@/Context/UserData";
+
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -17,12 +20,16 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
       <body
         className={`${roboto.variable} antialiased`}
       >
-        {children}
+        <UserData>
+          {children}
+        </UserData>
+        
       </body>
     </html>
   );

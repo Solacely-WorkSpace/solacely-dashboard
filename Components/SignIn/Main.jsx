@@ -13,8 +13,11 @@ import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Login } from "@/lib/auth";
+import { useUser } from "@/Context/UserData";
 
 const Main = () => {
+  const { setUser } = useUser();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
@@ -28,7 +31,7 @@ const Main = () => {
   });
 
   const onSubmit = async (data) => {
-    Login(data, setIsLoading, router);
+    Login(data, setIsLoading, router, setUser);
   };
 
   return (

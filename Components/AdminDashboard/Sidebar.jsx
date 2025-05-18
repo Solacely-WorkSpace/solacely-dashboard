@@ -13,9 +13,25 @@ import Image from "next/image";
 import pic from "@/public/icons/curl.svg";
 import logo from "@/public/icons/logo.svg";
 import SidebarInfo from "./SidebarInfo";
+import { useUser } from "@/Context/UserData";
+import { shortName } from "@/lib/utils";
+import { useEffect, useState } from "react";
+import Loading from "../Loader/Loading";
 
 const CollapsibleSide = () => {
-  const { isMobile, open } = useSidebar();
+  const { user } = useUser();
+
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
+
+  if (!hydrated) return <Loading />;
+
+  const name = user?.user?.full_name;
+  const email = user?.user?.email;
+
   return (
     <Sidebar collapsible="icon" className="sm:w-14 md:w-64">
       <SidebarHeader className="overflow-clip">
@@ -38,12 +54,10 @@ const CollapsibleSide = () => {
           </figure>
           <article className=" flex-1 flex flex-col justify-center items-start gap-1 w-1/2 text-ellipsis overflow-clip">
             <p className=" text-sm text-slate-400 font-semibold font-rob">
-              {" "}
-              White Panther{" "}
+              {user && shortName(name)}{" "}
             </p>
             <p className=" text-sm text-slate-400 font-semibold font-rob ">
-              {" "}
-              Wakandwhitepanther@wakamail.com{" "}
+              {user && email}
             </p>
           </article>
         </div>

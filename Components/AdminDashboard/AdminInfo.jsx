@@ -1,38 +1,44 @@
+import { shortName } from "@/lib/utils";
 import Image from "next/image";
+import { SidebarTrigger } from "../ui/sidebar";
 
 // assets
-import pic from "@/public/icons/curl.svg";
+
 import { FaBell, FaUserCircle } from "react-icons/fa";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
-const AdminInfo = ({ param, title, User }) => {
+const AdminInfo = ({ User }) => {
+  const user = User.user;
+
   return (
-    <div className="container flex justify-between w-full mx-auto bg-white h-fit items-center p-4">
-      {param === "dashboard" ? (
+    <div className="container flex justify-between w-full bg-white h-fit items-center py-4">
+      <div className=" flex items-center gap-1">
         <div className=" font-rob flex flex-col gap-0.5">
-          <h2 className=" font-bold text-md ">Hi, {User.user.username}</h2>
+          <h2 className=" font-bold text-md ">Hi, {user.username}</h2>
           <p className=" text-slate-400 font-semibold text-md ">Welcome Back</p>
         </div>
-      ) : (
-        <h1 className=" font-medium text-2xl"> {title} </h1>
-      )}
+      </div>
 
       <div className=" flex gap-4 md:gap-8 items-center">
         <FaBell className=" text-slate-400" />
         <article className=" flex flex-nowrap gap-1 items-center">
-          {User.user.profile_image !== null ? (
+          {user.profile_image !== null ? (
             <Image
               src={User.user.profile_image}
               alt="user pic"
+              width={48}
+              height={48}
               className=" w-8 md:w-12"
             />
           ) : (
-            <FaUserCircle />
+            <span aria-label="Profile_pic">
+              <FaUserCircle size={32} />
+            </span>
           )}
 
           <span className=" font-bold hidden md:block">
             {" "}
-            {User.user.full_name}{" "}
+            {shortName(user.full_name || "")}
           </span>
         </article>
         <MdOutlineKeyboardArrowDown className="" />
