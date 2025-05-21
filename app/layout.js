@@ -2,6 +2,9 @@
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import { UserData } from "@/Context/UserData";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const roboto = Roboto({
@@ -29,6 +32,7 @@ export default function RootLayout({ children }) {
         <UserData>
           {children}
         </UserData>
+        <ToastContainer autoClose={3000} position="top-center" />
         
       </body>
     </html>

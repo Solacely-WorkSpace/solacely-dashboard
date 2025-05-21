@@ -2,25 +2,36 @@
 import Link from "next/link";
 import { FaChevronLeft } from "react-icons/fa6";
 import { Button } from "../ui/button";
-import { cn } from "@/lib/utils";
+import { cn, ListingSchema } from "@/lib/utils";
 import BasicInfo from "./BasicInfo";
 import Spaces from "./Spaces";
 import Payment from "./Payment";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Form } from "../ui/form";
 
 const Coliving = () => {
   const [activeComponent, setActiveComponent] = useState("BasicInfo");
 
+  const form = useForm({
+    resolver: zodResolver(ListingSchema),
+  });
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   const renderComponent = () => {
     switch (activeComponent) {
       case "BasicInfo":
-        return <BasicInfo />;
+        return <BasicInfo form={form} />;
       case "Spaces":
-        return <Spaces />;
+        return <Spaces form={form} />;
       case "Payment":
-        return <Payment />;
+        return <Payment form={form} />;
       default:
-        return <BasicInfo />;
+        return <BasicInfo form={form} />;
     }
   };
 
@@ -43,46 +54,50 @@ const Coliving = () => {
         <FaChevronLeft size={10} />{" "}
         <span className="text-neutral-500 font-medium text-xs"> Go Back</span>
       </Link>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <div className=" flex justify-between items-center mt-10 px-4">
+            <h1 className="text-2xl font-bold"> Property </h1>
+            <div>
+              <Button
+                className={cn(
+                  " bg-transparent border border-neutral-200 text-primary p-6 hover:bg-neutral-100 hover:text-neutral-600 transition-all duration-200 ease-in-out cursor-pointer"
+                )}
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                className={cn(
+                  " ml-4 p-6 hover:bg-blend-color transition-all duration-200 ease-in-out cursor-pointer"
+                )}
+              >
+                Save
+              </Button>
+            </div>
+          </div>
 
-      <div className=" flex justify-between items-center mt-10 px-4">
-        <h1 className="text-2xl font-bold"> Property </h1>
-        <div>
-          <Button
-            className={cn(
-              " bg-transparent border border-neutral-200 text-primary p-6 hover:bg-neutral-100 hover:text-neutral-600 transition-all duration-200 ease-in-out cursor-pointer"
-            )}
-          >
-            Cancel
-          </Button>
-          <Button
-            className={cn(
-              " ml-4 p-6 hover:bg-blend-color transition-all duration-200 ease-in-out cursor-pointer"
-            )}
-          >
-            Save
-          </Button>
-        </div>
-      </div>
+          <div>
+            <ul className=" inline-flex gap-10 px-4 text-sm text-neutral-500 mt-5">
+              {tabs.map((tab) => (
+                <li
+                  key={tab.name}
+                  className={`cursor-pointer py-4 ${
+                    activeComponent === tab.component
+                      ? "text-primary font-semibold border-b-2 border-primary"
+                      : ""
+                  }`}
+                  onClick={() => handleTabClick(tab.component)}
+                >
+                  {tab.name}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-      <div>
-        <ul className=" inline-flex gap-10 px-4 text-sm text-neutral-500 mt-5">
-          {tabs.map((tab) => (
-            <li
-              key={tab.name}
-              className={`cursor-pointer py-4 ${
-                activeComponent === tab.component
-                  ? "text-primary font-semibold border-b-2 border-primary"
-                  : ""
-              }`}
-              onClick={() => handleTabClick(tab.component)}
-            >
-              {tab.name}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {<div className="mt-10 px-4">{renderComponent()}</div>}
+          {<div className="mt-10 px-4">{renderComponent()}</div>}
+        </form>
+      </Form>
     </div>
   );
 };
