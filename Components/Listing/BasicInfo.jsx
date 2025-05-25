@@ -347,7 +347,7 @@ const BasicInfo = ({ form }) => {
       </div>
       <FormField
         control={form.control}
-        name="address"
+        name="location"
         render={({ field }) => (
           <FormItem>
             <FormLabel
@@ -370,7 +370,7 @@ const BasicInfo = ({ form }) => {
       />
 
       <FormField
-        name="detail"
+        name="description"
         control={form.control}
         render={({ field }) => (
           <FormItem>
@@ -519,6 +519,7 @@ const BasicInfo = ({ form }) => {
                   alt="Preview"
                   width={50}
                   height={50}
+                  className=" w-auto h-auto"
                 />
               ))}
             </div>
@@ -624,9 +625,15 @@ const BasicInfo = ({ form }) => {
         form={form}
         label={" Maintainance & Repairs"}
         placeholder={" Repairs "}
+        name={"repairs"}
       />
 
-      <Addnew form={form} label={" Defects "} placeholder={" Defects "} />
+      <Addnew
+        form={form}
+        label={" Defects "}
+        placeholder={" Defects "}
+        name={"defects"}
+      />
     </div>
   );
 };

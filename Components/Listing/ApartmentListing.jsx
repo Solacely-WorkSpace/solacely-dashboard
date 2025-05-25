@@ -10,8 +10,10 @@ import { useMemo, useState } from "react";
 import { Form } from "../ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useUser } from "@/Context/UserData";
 
 const ApartmentListing = () => {
+  const { user } = useUser();
   const [activeComponent, setActiveComponent] = useState("BasicInfo");
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm({
@@ -19,8 +21,8 @@ const ApartmentListing = () => {
     defaultValues: {
       title: "",
       price: "",
-      address: "",
-      detail: "",
+      location: "",
+      description: "",
       buildingType: "",
       period: "",
       status: "",
@@ -29,8 +31,8 @@ const ApartmentListing = () => {
       bedroom: [],
       garage: "",
       bath: "",
-      defects: "",
-      amenities: "",
+      defects: [""],
+      repairs: [""],
       bed: "",
       bathroom: [],
       livingroom: [],
@@ -55,12 +57,13 @@ const ApartmentListing = () => {
     mode: onchange,
   });
 
+  console.log(form.watch());
   const onError = (error) => {
     console.log("Validation Errors", error);
   };
 
   const onSubmit = (data) => {
-    UploadApartment(data, setIsLoading);
+    UploadApartment(data, setIsLoading, user);
   };
 
   const renderComponent = () => {
