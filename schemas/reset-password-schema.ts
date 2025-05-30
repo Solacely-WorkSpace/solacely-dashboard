@@ -1,0 +1,9 @@
+import { z } from "zod";
+
+export const ResetPasswordSchema = z.object({
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(8, "Password must be at least 8 characters long"),
+  confirmPassword: z.string().min(8, "Must macth password"),
+}).refine((data) => data.password === data.confirmPassword, {
+  message: "Passwords don't match",
+});

@@ -1,0 +1,40 @@
+import { z } from "zod";
+
+export const ListingSchema = z.object({
+  title: z.string().min(4, "Title must be at least 4 characters long"),
+  price: z.string().min(2, " price should be above 40"),
+  location: z.string().min(4, "Location must be at least 4 characters long"),
+  description: z.string().min(10, "Description must be at least 10 characters long"),
+  buildingType: z.string().min(4, "Select a type"),
+  light: z.string().min(2, " Light fee is required"),
+  estate: z.string().min(2, "Estate fee is required"),
+  bin: z.string().min(2, "Enter bin fee"),
+  security: z.string().min(2, "Enter security fee"),
+  insurance: z.string().min(2, " Select who handles the insurance").optional().or(z.literal("")),
+  maintainace: z.string().min(2, " Select who handles the maintainace").optional().or(z.literal("")),
+  optionFee: z.string().min(2, " Select who handles the insurance").optional().or(z.literal("")),
+  terminationConditions: z.string().min(2, " Select who handles the insurance").optional().or(z.literal("")),
+  expiryDate: z.string().min(2, " Select who handles the insurance").optional().or(z.literal("")),
+  rentCredit: z.string().min(2, " Select who handles the insurance").optional().or(z.literal("")),
+  buyPrice: z.string().min(2, " Select who handles the insurance").optional().or(z.literal("")),
+  monthlyRent: z.string().min(2, " Select who handles the insurance").optional().or(z.literal("")),
+  rentalPeriod: z.string().min(2, " Select who handles the insurance").optional().or(z.literal("")),
+  optionToBuy: z.string().min(2, " Select who handles the insurance").optional().or(z.literal("")),
+  period: z.string().min(4, "Select a period"),
+  status: z.string().min(4, "Select a avalability"),
+  agent: z.string().min(4, "Select an agent"),
+  size: z.string().min(1, "Size must be at least 2ft"),
+  bed: z.string().min(1, "There must be at least 1 bedroom"),
+  garage: z.string().min(0, "There must be at least 0 garage"),
+  bath: z.string().min(1, "There must be at least 1 bathroom"),
+  defects: z.array(z.string()).optional(),
+  repairs: z.array(z.string()).optional(),
+  bedroom: z.array(z.instanceof(File)).min(1, "Bedroom Image is required"),
+  bathroom:z.array(z.instanceof(File)).min(1, "Bathroom Image is required"),
+  livingroom: z.array(z.instanceof(File)).min(1, "Livingroom Image is required"),
+  kitchen: z.array(z.instanceof(File)).min(1, "Kitchen Image is required"),
+
+  vr: z.any().optional(),
+
+  video: z.any().optional()
+})
