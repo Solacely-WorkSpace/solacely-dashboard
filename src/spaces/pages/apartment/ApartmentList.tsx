@@ -93,7 +93,9 @@ const ApartmentList: FC = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            textDecoration: "none",
+            "&:hover": {
+              color: "#fff", 
+            },
           }}
         >
           <AddIcon sx={{ mr: 1 }} />

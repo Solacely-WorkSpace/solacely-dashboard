@@ -4,7 +4,7 @@ const Input = (theme: Theme): Components<Theme> => ({
   MuiOutlinedInput: {
     styleOverrides: {
       root: {
-        height: 55,
+        minHeight: 55,
         borderRadius: 10,
         paddingTop: 12,
         paddingRight: 16,
@@ -22,12 +22,21 @@ const Input = (theme: Theme): Components<Theme> => ({
           backgroundColor: "transparent",
         },
         "& .MuiOutlinedInput-notchedOutline": {
-          borderColor: "#E6E8F0", 
+          borderColor: "#E6E8F0",
           borderWidth: "2px",
         },
         "&.Mui-focused": {
           backgroundColor: "none",
           borderColor: theme.palette.primary.main,
+        },
+
+        "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button":
+          {
+            WebkitAppearance: "none",
+            margin: 0,
+          },
+        "& input[type=number]": {
+          MozAppearance: "textfield",
         },
 
         "&.valid-input": {
@@ -46,9 +55,9 @@ const Input = (theme: Theme): Components<Theme> => ({
           paddingBottom: 8,
           "& textarea": {
             height: "auto !important",
-            minHeight: 100, 
+            minHeight: 100,
             padding: 0,
-            resize: "vertical", 
+            resize: "vertical",
           },
         },
         "&.MuiOutlinedInput-multiline input": {
