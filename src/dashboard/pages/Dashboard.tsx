@@ -21,7 +21,7 @@ const Dashboard: FC = () => {
 
     try {
       const { data } = await apartmentService.getAll();
-      setApartments(data as Apartment[]);
+       setApartments((data as Apartment[]).slice(0, 3));
     } finally {
       setTimeout(() => {
         setLoading(false);

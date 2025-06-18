@@ -72,6 +72,29 @@ class AuthService extends BaseAPIService {
 
     authStorageService.setUserData(data);
   }
+
+
+  public async forgotPassword(payload: {email: string}): Promise<AuthEntity> {
+    try {
+      const { data } = await this.post<
+        AuthData,
+        { email: string }
+      >("/password-reset/", payload);
+
+      authStorageService.setUserData(data);
+
+      return {
+        isAuthenticated: true,
+        user: data.user,
+      };
+    } catch (e: any) {
+      console.log(e);
+      return {
+        isAuthenticated: false,
+        error: e.message,
+      };
+    }
+  }
 }
 
 export const authService = new AuthService();

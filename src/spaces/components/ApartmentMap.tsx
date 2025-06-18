@@ -1,17 +1,13 @@
 import { Typography, Paper, Box } from "@mui/material";
 import { GoogleMap, useJsApiLoader, OverlayView } from "@react-google-maps/api";
 import { ReactComponent as PinIcon } from "../../assets/images/common/hotel.svg";
+import type { FC } from "react";
 
 const containerStyle = {
   width: "100%",
   height: "570px",
   border: "2px solid #E6E8F0",
   borderRadius: 10,
-};
-
-const center = {
-  lat: -33.8688,
-  lng: 151.2093,
 };
 
 const mapStyles = [
@@ -71,10 +67,19 @@ const mapStyles = [
   },
 ];
 
-const ApartmentMap = () => {
+interface ApartmentMapProps {
+  longitude: number;
+  latitude: number;
+}
+const ApartmentMap: FC<ApartmentMapProps> = ({ longitude, latitude }) => {
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
   });
+
+  const center = {
+    lat: latitude,
+    lng: longitude,
+  };
 
   if (loadError) return <Typography>Error loading map</Typography>;
   if (!isLoaded) return <Typography>Loading map...</Typography>;

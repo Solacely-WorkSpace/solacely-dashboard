@@ -17,7 +17,7 @@ const TopNav: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-   const {state} = useAuth();
+  const { state, logout } = useAuth();
 
   const handleAvatarClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -25,6 +25,14 @@ const TopNav: React.FC = () => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } finally {
+      console.log("logged out");
+    }
   };
 
   return (
@@ -60,18 +68,18 @@ const TopNav: React.FC = () => {
                 bgcolor: "#FAFAFA",
                 cursor: "pointer",
                 height: 58,
-                padding: "16px 20px"
+                padding: "16px 20px",
               }}
             >
               <Avatar
                 alt={state.user.full_name}
-                src="/path/to/profile.jpg" 
+                src="/path/to/profile.jpg"
                 sx={{ width: 32, height: 32 }}
               />
               <Box component="span" sx={{ fontWeight: 500 }}>
                 {state.user.full_name}
               </Box>
-              <ChevronIcon/>
+              <ChevronIcon />
             </Box>
 
             <Menu
@@ -84,7 +92,7 @@ const TopNav: React.FC = () => {
             >
               <MenuItem>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
-              <MenuItem>Logout</MenuItem>
+              <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </Box>
         </Toolbar>

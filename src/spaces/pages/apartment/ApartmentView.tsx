@@ -24,12 +24,20 @@ import ApartmentImageViewer from "../../components/ApartmentImageViewer";
 const ApartmentView = () => {
   const { id } = useParams<{ id: string }>();
   const [apartment, setApartment] = useState<Apartment | null>(null);
+  const [groupedImages, setGroupedImages] = useState<Record<string, string[]>>(
+    {}
+  );
 
   const fetchApartment = async () => {
     if (!id) return;
     try {
       const { data } = await apartmentService.get(id);
       setApartment(data as Apartment);
+      if (data.images) {
+        const grouped = transformImages(data.images);
+        console.log(grouped);
+        setGroupedImages(grouped);
+      }
     } catch (e) {}
   };
 
@@ -63,17 +71,30 @@ const ApartmentView = () => {
     { label: "House Rent", value: 2500 },
   ];
 
-  const images = {
-    bedroom: ["https://a0.muscache.com/im/pictures/1b8f8f7f-efd5-4f74-aa19-314d9d8c0c32.jpg?im_w=1200", "https://a0.muscache.com/im/pictures/a0c14369-10f2-490b-bed6-481737c05101.jpg?im_w=1200"],
-    kitchen: ["https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MjA2NDEyNjk%3D/original/aa24e582-36e6-4dfc-b1aa-6678f0d8e39b.jpeg?im_w=1200"],
+  const transformImages = (
+    images: {
+      image_type_display: string;
+      image: string;
+    }[]
+  ) => {
+    return images.reduce((acc, img) => {
+      const key = img.image_type_display;
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      acc[key].push(img.image);
+      return acc;
+    }, {} as Record<string, string[]>);
   };
 
   return (
     <Box>
-      <Box sx={{
-        marginBottom: 10
-      }}>
-        <ApartmentImageViewer images={images} />
+      <Box
+        sx={{
+          marginBottom: 10,
+        }}
+      >
+        <ApartmentImageViewer images={groupedImages} />
       </Box>
       <Paper
         sx={{
@@ -373,7 +394,10 @@ const ApartmentView = () => {
                 >
                   Map Location
                 </Typography>
-                <ApartmentMap />
+                <ApartmentMap
+                  latitude={Number(apartment.latitude)}
+                  longitude={Number(apartment.longitude)}
+                />
               </Box>
             </Grid>
           </Grid>

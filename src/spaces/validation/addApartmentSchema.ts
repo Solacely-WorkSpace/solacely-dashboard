@@ -53,4 +53,6 @@ export const addApartmentSchema = yup.object().shape({
       value: yup.string(),
     })
   ),
+  amenities: yup.string(),
+
 });

@@ -10,22 +10,24 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import PlaceholderImage from "../../assets/images/common/placeholder.png";
-import { ReactComponent as BedIcon } from "../../assets/images/space/bedroom.svg";
-import { ReactComponent as BathIcon } from "../../assets/images/space/bath.svg";
-import { ReactComponent as RulerIcon } from "../../assets/images/space/ruler.svg";
 import { ReactComponent as LocationIcon } from "../../assets/images/space/location.svg";
 import { BuildingTypeLabels } from "../config/const/BuildingTypeLabels";
 import ApartmentDetails from "./ApartmentDetails";
+import SPACES_ROUTES from "../config/spacesRouteList";
 
 interface ApartmentCardProps {
   apartment: Apartment;
 }
 
 const ApartmentCard: FC<ApartmentCardProps> = ({ apartment }) => {
+  const path = SPACES_ROUTES.VIEW_APARTMENT.PATH.replace(
+    ":id",
+    String(apartment.id)
+  );
   return (
     <Card
       component={Link}
-      to={`/apartments/${apartment.id}`}
+      to={path}
       sx={{
         display: "flex",
         textDecoration: "none",
@@ -36,7 +38,7 @@ const ApartmentCard: FC<ApartmentCardProps> = ({ apartment }) => {
         transition: "transform 0.2s",
         "&:hover": {
           transform: "scale(1.01)",
-          color: 'unset'
+          color: "unset",
         },
       }}
     >
@@ -46,8 +48,15 @@ const ApartmentCard: FC<ApartmentCardProps> = ({ apartment }) => {
         alt={apartment.title}
         sx={{ width: 255, height: 150, objectFit: "cover", borderRadius: 2 }}
       />
-      <CardContent sx={{height: 150, paddingTop:0}}>
-        <Box sx={{ height: 150, display: "flex", flexDirection: "column", justifyContent: 'space-between' }}>
+      <CardContent sx={{ height: 150, paddingTop: 0 }}>
+        <Box
+          sx={{
+            height: 150,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
           <Box>
             <Typography color="text.secondary" fontSize={12}>
               {BuildingTypeLabels[apartment.building_type]} |{" "}
@@ -57,7 +66,7 @@ const ApartmentCard: FC<ApartmentCardProps> = ({ apartment }) => {
               {apartment.title}
             </Typography>
 
-            <ApartmentDetails apartment={apartment}/>
+            <ApartmentDetails apartment={apartment} />
 
             <Stack direction="row" alignItems="center" spacing={1}>
               <LocationIcon />

@@ -8,11 +8,13 @@ import {
   InputAdornment,
   IconButton,
   CircularProgress,
+  Link,
 } from "@mui/material";
 import { Visibility, VisibilityOff, CheckCircle, Check } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { useForm, Controller } from "react-hook-form";
+import AUTH_ROUTES from "../config/authRouteList";
 
 type FormData = {
   email: string;
@@ -171,6 +173,14 @@ const Login: React.FC = () => {
               />
             )}
           />
+        </Box>
+
+        <Box sx={{display: 'flex', justifyContent: 'end', mb:2, color: 'red'}}>
+          <Link href={AUTH_ROUTES.RESET_PASSWORD.PATH} color="success" sx={{
+            textDecoration: 'none',
+            fontWeight: 600,
+            fontSize: 12
+          }}>Forgot Password</Link>
         </Box>
 
         <Button

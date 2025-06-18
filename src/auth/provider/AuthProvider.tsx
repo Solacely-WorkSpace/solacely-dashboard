@@ -112,9 +112,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const logout = () => {
-    authService.logout();
-    dispatch({ type: AuthActionType.LOGOUT });
+  const logout = async () => {
+    try {
+      await authService.logout();
+      dispatch({ type: AuthActionType.LOGOUT });
+    } catch (error) {
+      console.error("Logut failed", error);
+    }
   };
 
   const authContextValue = useMemo(

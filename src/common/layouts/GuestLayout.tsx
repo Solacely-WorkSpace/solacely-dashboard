@@ -4,6 +4,8 @@ import { Outlet, Navigate } from "react-router-dom";
 import { Box, Grid } from "@mui/material";
 import AuthSlider from "../components/AuthSlider";
 import Logo from "../../assets/images/logo.svg";
+import { ReactComponent as TopSvg } from "../../assets/images/common/top-guest.svg";
+import { ReactComponent as BottomSvg } from "../../assets/images/common/bottom-guest.svg";
 
 const GuestLayout: FC = () => {
   const { state } = useAuth();
@@ -13,7 +15,7 @@ const GuestLayout: FC = () => {
   }
 
   return (
-    <Box sx={{ width: "100vw", height: "100vh" }}>
+    <Box sx={{ width: "100vw", height: "100vh"}}>
       <Grid
         container
         sx={{
@@ -31,10 +33,25 @@ const GuestLayout: FC = () => {
             height: "100%",
             width: "100%",
             bgcolor: "grey.100",
-            position: "relative",
+            background: '#521282',
+            position: 'relative'
           }}
         >
+          <Box sx={{
+            position: 'absolute',
+            right: 0
+          }}>
+            <TopSvg/>
+          </Box>
           <AuthSlider />
+
+           <Box sx={{
+            position: 'absolute',
+            left: 0,
+            bottom: 0
+          }}>
+            <BottomSvg/>
+          </Box>
         </Grid>
 
         <Grid

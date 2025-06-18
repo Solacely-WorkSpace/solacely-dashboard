@@ -15,7 +15,7 @@ import BasicInformation from "../../components/apartment/tabs/BasicInformation";
 import Media from "../../components/apartment/tabs/Media";
 import PaymentBreakDown from "../../components/apartment/tabs/PaymentBreakDown";
 import ExtraInformation from "../../components/apartment/tabs/ExtraInformation";
-import type { Apartment, ImageType } from "../../types/Apartment";
+import type { Apartment } from "../../types/Apartment";
 import { apartmentService } from "../../service/ApartmentService";
 import { useNavigate, useParams } from "react-router-dom";
 import SPACES_ROUTES from "../../config/spacesRouteList";
@@ -92,6 +92,7 @@ const AddApartment: FC = () => {
       images: [],
       homeDetails: [{ key: "" }],
       homeDefects: [{ key: "", value: "" }],
+      amenities: "example amenities",
     },
   });
   const { handleSubmit } = methods;
@@ -115,7 +116,7 @@ const AddApartment: FC = () => {
     });
     try {
       if (id) {
-        await apartmentService.updateById(id, formData);
+        await apartmentService.updateById(id, {amenities: "example amenities", ...formData});
       } else {
         await apartmentService.create(formData);
       }
@@ -125,7 +126,7 @@ const AddApartment: FC = () => {
     } finally {
       setTimeout(() => {
         setLoading(false);
-      },500);
+      }, 500);
     }
   };
 
@@ -181,7 +182,7 @@ const AddApartment: FC = () => {
               variant="outlined"
               fullWidth
               color="primary"
-               disabled={loading}
+              disabled={loading}
               sx={{
                 height: 55,
                 width: 90,

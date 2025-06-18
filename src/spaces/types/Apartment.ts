@@ -8,14 +8,15 @@ export type Apartment = {
   updated_at: string;
   description: string;
   has_visitor_bathroom: boolean;
-  latitude: string;
-  longitude: string;
+  latitude: number;
+  longitude: number;
   location: string;
   number_of_bathrooms: number;
   number_of_bedrooms: number;
   price: string;
   status: ListingStatus;
   title: string;
+  images: any[]
 };
 
 export type ListingStatus = "available" | "rented" | "pending" | "unavailable";

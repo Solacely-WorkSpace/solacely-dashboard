@@ -9,20 +9,24 @@ import {
   Paper,
   Fade,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { FC } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { ImageTypeLabels } from "../config/const/ImageTypeLabels";
+import type { ImageType } from "../types/Apartment";
 
 interface ApartmentImageViewerProps {
   images: Record<string, string[]>;
 }
 
 const ApartmentImageViewer: FC<ApartmentImageViewerProps> = ({ images }) => {
+  console.log("images to render", images);
   const categories = Object.keys(images);
-  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+  const [selectedCategory, setSelectedCategory] =
+    useState<ImageType>("bedroom");
   const [imageIndex, setImageIndex] = useState(0);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,6 +35,7 @@ const ApartmentImageViewer: FC<ApartmentImageViewerProps> = ({ images }) => {
   const open = Boolean(anchorEl);
   const currentImages = images[selectedCategory] || [];
   const currentImage = currentImages[imageIndex];
+  console.log("images list", images);
 
   const handleOpenModal = () => {
     if (!currentImage) return;
@@ -70,6 +75,13 @@ const ApartmentImageViewer: FC<ApartmentImageViewerProps> = ({ images }) => {
     );
     setIsLoading(true);
   };
+
+  useEffect(() => {
+    if (categories.length > 0) {
+      setSelectedCategory(categories[0] as ImageType);
+      setImageIndex(0);
+    }
+  }, [images]);
 
   return (
     <>
