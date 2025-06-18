@@ -21,6 +21,10 @@ const Input = (theme: Theme): Components<Theme> => ({
           boxSizing: "border-box",
           backgroundColor: "transparent",
         },
+        "&.small-input": {
+          minHeight: 32,
+          height: 32
+        },
         "& .MuiOutlinedInput-notchedOutline": {
           borderColor: "#E6E8F0",
           borderWidth: "2px",

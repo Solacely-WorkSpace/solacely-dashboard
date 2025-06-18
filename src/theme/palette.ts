@@ -1,5 +1,4 @@
 const palette = {
-  // Standard MUI color roles
   primary: {
     main: "#521282",
     dark: "#3DC5A1 ", // Primary/1
@@ -42,7 +41,6 @@ const palette = {
     contrastText: "#fff",
   },
 
-  // Custom Extensions (non-standard MUI keys)
   backgroundAlt: {
     paper: "#FAFBFC",
     default: "#FFFEFF",
@@ -65,7 +63,7 @@ const palette = {
       main: "#FFA2C0",
       light: "#FFB7F5",
       background: "#FFEBF6",
-      translucent: "#FFE3EC", // Pink opacity
+      translucent: "#FFE3EC", 
     },
     yellow: {
       light: "#FFCE73",

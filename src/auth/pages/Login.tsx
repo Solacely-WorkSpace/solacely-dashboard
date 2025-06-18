@@ -31,7 +31,7 @@ const Login: React.FC = () => {
     formState: { errors, isValid },
     watch,
   } = useForm<FormData>({
-    mode: "onChange", // validate onChange for immediate feedback
+    mode: "onChange", 
     defaultValues: {
       email: "",
       password: "",
@@ -55,7 +55,6 @@ const Login: React.FC = () => {
     setShowPassword((show) => !show);
   };
 
-  // Watch current input values to display checkmark if valid
   const emailValue = watch("email");
   const passwordValue = watch("password");
 

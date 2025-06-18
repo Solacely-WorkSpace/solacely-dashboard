@@ -30,21 +30,6 @@ const TabPanel = ({ children, value, index }: any) => {
 };
 
 
-// apartmentodel {
-//     title: string,
-//     loaction: string;
-//     price: float;
-//     repairs: json;
-//     defects: JSON;
-//     description: Text
-//     status: {
-//          AVAILABLE  = 'available', 'AVAILABLE'
-//         RENTED      = 'rented', 'Rented'
-//         PENDING     = 'pending', 'Pending'
-//         UNAVAILABLE = 'unavailable', 'Unavailable'
-//     }
-// }
-
 const AddApartmentzzz: FC = () => {
   const [tabIndex, setTabIndex] = useState(0);
 
@@ -74,7 +59,6 @@ const AddApartmentzzz: FC = () => {
 
   const onSubmit = (data: any) => {
     console.log("Form Data:", data);
-    alert("Form submitted!"); // temporary UI feedback
   };
 
   const onError = (errors: any) => {

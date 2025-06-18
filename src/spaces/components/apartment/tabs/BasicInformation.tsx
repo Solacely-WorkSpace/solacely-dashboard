@@ -42,8 +42,8 @@ interface BasicInformationProps {
 
 const BasicInformation: FC<BasicInformationProps> = ({ methods }) => {
   const agents = [
-    { name: "Jon Doe", email: "lawknchi2yahoo.com" },
-    { name: "Mary Jane", email: "lawknchi2yahoo.com" },
+    { name: "Jon Doe", email: "jon@doe.com" },
+    { name: "Mary Jane", email: "mary@jane.com" },
   ];
   return (
     <Container

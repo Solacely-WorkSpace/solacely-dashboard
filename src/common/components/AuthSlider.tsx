@@ -32,14 +32,12 @@ const AuthSlider = () => {
     if (newProgress < 100) {
       animationFrameId.current = requestAnimationFrame(animateProgress);
     } else {
-      // Move to next slide when progress completes
       startTimeRef.current = null;
       setProgress(0);
       sliderRef.current?.slickNext();
     }
   };
 
-  // Start animation on currentSlide change
   useEffect(() => {
     animationFrameId.current = requestAnimationFrame(animateProgress);
     return () => {
@@ -60,11 +58,9 @@ const AuthSlider = () => {
       setProgress(0);
       startTimeRef.current = null;
     },
-    // We disable autoplay since we control slide change manually
     autoplay: false,
   };
 
-  // Custom dots render with progress loader on active dot
   const customPaging = (i: number) => {
     const isActive = i === currentSlide;
     return (

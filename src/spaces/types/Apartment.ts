@@ -1,11 +1,21 @@
 export type Apartment = {
   id: number;
-  title: string;
-  date: number;
+  agent: number;
+  amenities: string;
+  area_size_sqm: number | null;
+  building_type: BuildingType;
+  created_at: string;
+  updated_at: string;
+  description: string;
+  has_visitor_bathroom: boolean;
+  latitude: string;
+  longitude: string;
   location: string;
-  amount: string;
-  status: string;
-  type: string;
+  number_of_bathrooms: number;
+  number_of_bedrooms: number;
+  price: string;
+  status: ListingStatus;
+  title: string;
 };
 
 export type ListingStatus = "available" | "rented" | "pending" | "unavailable";

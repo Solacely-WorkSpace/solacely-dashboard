@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import moment from "moment";
 import {
   Box,
   Button,
@@ -14,6 +15,7 @@ import {
   TableSortLabel,
   Paper,
   TableContainer,
+  MenuItem,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 
@@ -26,6 +28,11 @@ import { ReactComponent as SortIcon } from "../../../assets/images/common/sort.s
 import { ReactComponent as AddIcon } from "../../../assets/images/common/add.svg";
 import { ReactComponent as SearchIcon } from "../../../assets/images/common/add.svg";
 import ActionCell from "../../components/ActionCell";
+import ApartmentStatusBadge from "../../components/ApartmentStatusBadge.tsx";
+import { BuildingTypeLabels } from "../../config/const/BuildingTypeLabels.ts";
+import { Controller } from "react-hook-form";
+import { ListingStatusLabels } from "../../config/const/ListingStatusLabels.ts";
+import ApartmentFilter from "../../components/apartment/ApartmentFilter.tsx";
 
 const ApartmentList: FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -47,16 +54,25 @@ const ApartmentList: FC = () => {
     { id: "date", label: "Date", sortable: true },
     { id: "location", label: "Location", sortable: true },
     { id: "amount", label: "Amount", sortable: true },
-    { id: "status", label: "Status", sortable: false }, // not sortable
+    { id: "status", label: "Status", sortable: false },  
     { id: "type", label: "Type", sortable: false },
     { id: "options", label: "", sortable: false },
   ];
+
+  const onDelete = async (deleteId: number) => {
+    try {
+      await apartmentService.deleteById(deleteId);
+      setApartments((prev) => prev.filter((apt) => apt.id !== deleteId));
+    } catch (error) {
+      console.error("Failed to delete apartment:", error);
+    }
+  };
 
   const fetchApartments = async (): Promise<void> => {
     setLoading(true);
 
     try {
-      const data = await apartmentService.getAll();
+      const { data } = await apartmentService.getAll();
       setApartments(data);
     } finally {
       setLoading(false);
@@ -94,7 +110,7 @@ const ApartmentList: FC = () => {
             justifyContent: "space-between",
             alignItems: "center",
             "&:hover": {
-              color: "#fff", 
+              color: "#fff",
             },
           }}
         >
@@ -102,12 +118,7 @@ const ApartmentList: FC = () => {
           Add new
         </Button>
       </Box>
-      <Box sx={{}}>
-        <Select></Select>
-        <Select></Select>
-        <Select></Select>
-        <Select></Select>
-      </Box>
+      <ApartmentFilter />
 
       <TableContainer component={Paper}>
         <Table>
@@ -128,8 +139,8 @@ const ApartmentList: FC = () => {
                       IconComponent={
                         orderBy === column.id
                           ? order === "asc"
-                            ? ArrowUpwardIcon
-                            : ArrowDownwardIcon
+                            ? SortIcon
+                            : SortIcon
                           : () => null
                       }
                     >
@@ -150,7 +161,7 @@ const ApartmentList: FC = () => {
                   <Box
                     sx={{
                       display: "flex",
-                      justifyContent: "space-between",
+                      justifyContent: "flex-start",
                       alignItems: "center",
                       gap: 1,
                     }}
@@ -170,7 +181,9 @@ const ApartmentList: FC = () => {
                           fontSize: 16,
                           fontWeight: 700,
                         }}
-                      ></Typography>
+                      >
+                        {apartment.title}
+                      </Typography>
                       <Typography
                         variant="body1"
                         sx={{
@@ -178,7 +191,9 @@ const ApartmentList: FC = () => {
                           fontSize: 14,
                           fontWeight: 400,
                         }}
-                      ></Typography>
+                      >
+                        {apartment.id}
+                      </Typography>
                     </Box>
                   </Box>
                 </TableCell>
@@ -198,7 +213,7 @@ const ApartmentList: FC = () => {
                         fontWeight: 400,
                       }}
                     >
-                      Jan 29, 2022
+                      {moment(apartment.created_at).format("MMM DD, YYYY")}
                     </Typography>
                     <Typography
                       variant="body1"
@@ -208,7 +223,7 @@ const ApartmentList: FC = () => {
                         fontWeight: 500,
                       }}
                     >
-                      at 08.00 PM
+                      {moment(apartment.created_at).format("[at] hh.mm A")}
                     </Typography>
                   </Box>
                 </TableCell>
@@ -234,7 +249,7 @@ const ApartmentList: FC = () => {
                     }}
                   >
                     {" "}
-                    ₦{Number(apartment.amount).toLocaleString()}
+                    ₦{Number(apartment.price).toLocaleString()}
                   </Typography>
                   <Typography
                     variant="body1"
@@ -247,33 +262,8 @@ const ApartmentList: FC = () => {
                     Monthly
                   </Typography>
                 </TableCell>
-                label
                 <TableCell>
-                  {/* Custom badge styling */}
-                  <Box
-                    sx={{
-                      display: "inline-block",
-                      px: 1,
-                      py: 0.5,
-                      borderRadius: 1,
-                      bgcolor:
-                        apartment.status === "approved"
-                          ? "success.light"
-                          : apartment.status === "pending"
-                          ? "warning.light"
-                          : "error.light",
-                      color:
-                        apartment.status === "approved"
-                          ? "success.main"
-                          : apartment.status === "pending"
-                          ? "warning.main"
-                          : "error.main",
-                      fontSize: 12,
-                      textTransform: "capitalize",
-                    }}
-                  >
-                    {apartment.status}
-                  </Box>
+                  <ApartmentStatusBadge status={apartment.status} />
                 </TableCell>
                 <TableCell>
                   <Typography
@@ -284,11 +274,11 @@ const ApartmentList: FC = () => {
                       fontWeight: 400,
                     }}
                   >
-                    {apartment.type}
+                    {BuildingTypeLabels[apartment.building_type]}
                   </Typography>
                 </TableCell>
                 <TableCell>
-                  <ActionCell row={apartment} />
+                  <ActionCell row={apartment} onDelete={onDelete} />
                 </TableCell>
               </TableRow>
             ))}

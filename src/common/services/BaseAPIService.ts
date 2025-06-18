@@ -35,7 +35,8 @@ class BaseAPIService {
   }
 
   private getAccessToken(): string | null {
-    return localStorage.getItem("accessToken");
+    const token = localStorage.getItem('accessToken');
+    return token ? (JSON.parse(token)) : null;
   }
 
   public get<T>(
@@ -79,7 +80,7 @@ class BaseAPIService {
     id: string | number,
     config?: AxiosRequestConfig
   ): Promise<AxiosResponse<T>> {
-    return this.delete<T>(`/${id}`, config);
+    return this.delete<T>(`/${id}/`, config);
   }
 
   async updateById<T, U>(
@@ -87,7 +88,7 @@ class BaseAPIService {
     data: U,
     config?: AxiosRequestConfig
   ): Promise<AxiosResponse<T>> {
-    return this.put<T, U>(`/${id}`, data, config);
+    return this.put<T, U>(`/${id}/`, data, config);
   }
 
   async create<T, U>(

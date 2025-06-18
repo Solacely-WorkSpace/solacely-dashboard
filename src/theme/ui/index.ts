@@ -5,6 +5,7 @@ import Drawer from "./Drawer";
 import ListItemButton from "./ListItemButton";
 import Tabs from "./Tabs";
 import Link from "./Link";
+import Table from "./Table";
 
 const componentsOverrides = (theme: any) => ({
   ...Button(theme),
@@ -13,7 +14,8 @@ const componentsOverrides = (theme: any) => ({
   ...Input(theme),
   ...ListItemButton(theme),
   ...Tabs(theme),
-   ...Link(theme),
+  ...Link(theme),
+  ...Table(theme),
 });
 
 export default componentsOverrides;

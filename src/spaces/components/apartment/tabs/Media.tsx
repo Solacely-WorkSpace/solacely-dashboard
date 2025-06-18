@@ -2,12 +2,20 @@ import { type FC } from "react";
 import { Box, Container } from "@mui/material";
 import Dropzone from "../../../../common/components/Dropzone";
 import AddApartmentImages from "../../../components/apartment/AddApartmentImages";
+import type { ImageType } from "../../../types/Apartment";
 
 interface BasicInformationProps {
-  handeImageUpload: (image: any) => void;
+  handeImageUpload: (type: ImageType, files: any[]) => void;
+  handeVideoUpload: (type: string, file: any) => void;
 }
 
-const Media: FC<BasicInformationProps> = ({ handeImageUpload }) => {
+const Media: FC<BasicInformationProps> = ({
+  handeImageUpload,
+  handeVideoUpload,
+}) => {
+  const onVideoUpload = (type:string, file:any)  => {
+    handeVideoUpload(type, file)
+  }
   return (
     <Container
       sx={{
@@ -21,12 +29,21 @@ const Media: FC<BasicInformationProps> = ({ handeImageUpload }) => {
           width: "100%",
         }}
       >
+        <AddApartmentImages onUpload={handeImageUpload} />
+      </Box>
+
+      <Box
+        mb={4}
+        sx={{
+          width: "100%",
+        }}
+      >
         <Dropzone
           accept={{
             "image/*": [".png", ".jpg", ".jpeg"],
           }}
           multiple={true}
-          onUpload={handeImageUpload}
+          onUpload={handeVideoUpload}
           label="Upload VR Video"
           text="Supports VR format"
         />
@@ -43,35 +60,10 @@ const Media: FC<BasicInformationProps> = ({ handeImageUpload }) => {
             "image/*": [".png", ".jpg", ".jpeg"],
           }}
           multiple={true}
-          onUpload={handeImageUpload}
+          onUpload={onVideoUpload}
           label="Upload Video"
           text="Supports MP4 format"
         />
-      </Box>
-
-      <Box
-        mb={4}
-        sx={{
-          width: "100%",
-        }}
-      >
-        <Dropzone
-          accept={{
-            "image/*": [".png", ".jpg", ".jpeg"],
-          }}
-          onUpload={handeImageUpload}
-          label="Upload Images of the Living Room"
-          text="Supports Png & Jpeg"
-        />
-      </Box>
-
-      <Box
-        mb={4}
-        sx={{
-          width: "100%",
-        }}
-      >
-        <AddApartmentImages onUpload={handeImageUpload} />
       </Box>
     </Container>
   );

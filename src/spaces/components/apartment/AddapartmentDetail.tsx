@@ -88,13 +88,6 @@ const AddapartmentDetail: React.FC<AddapartmentDetailProps> = ({
                     </IconButton>
                 </Grid>
               </Grid>
-              {/* <TextField
-                fullWidth
-                placeholder={placeholder}
-                value={value}
-                onChange={(e) => handleChange(index, e.target.value)}
-              />
-               */}
             </Box>
           </Grid>
         ))}
