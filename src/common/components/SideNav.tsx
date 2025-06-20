@@ -2,23 +2,15 @@ import React from "react";
 import {
   Drawer,
   List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   Toolbar,
   Box,
   IconButton,
-  Tooltip,
   Divider,
 } from "@mui/material";
 import {
-  Home,
-  Settings,
-  Person,
   ChevronLeft,
   ChevronRight,
 } from "@mui/icons-material";
-import { useNavigate, useLocation } from "react-router-dom";
 import Logo from "../../assets/images/logo.svg";
 import LogoIcon from "../../assets/images/logo-icon.svg";
 import { ReactComponent as DashboardIcon } from "../../assets/images/sidenav/dashboard.svg";
@@ -81,8 +73,6 @@ const menuItems = [
 ];
 
 const SideNav: React.FC<SideNavProps> = ({ collapsed, toggleNav }) => {
-  const navigate = useNavigate();
-  const location = useLocation();
 
   return (
     <Drawer

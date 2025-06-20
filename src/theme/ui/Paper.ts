@@ -1,4 +1,6 @@
-const Paper = (theme: any) => ({
+import type { Theme } from "@mui/material";
+
+const Paper = (theme: Theme) => ({
   MuiPaper: {
     styleOverrides: {
       root: {

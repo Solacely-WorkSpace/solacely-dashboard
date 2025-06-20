@@ -1,7 +1,7 @@
 import { Box, ListItemIcon, Paper, Typography } from "@mui/material";
 import { ReactComponent as TrendingUp } from "../../../assets/images/stats/trending-up.svg";
 import { ReactComponent as TrendingDown } from "../../../assets/images/stats/trending-down.svg";
-import { FC, ReactElement } from "react";
+import type { FC, ReactElement } from "react";
 
 interface StatCardProps {
   title: string;

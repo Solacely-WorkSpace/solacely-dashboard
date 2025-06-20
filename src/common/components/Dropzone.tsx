@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDropzone, type Accept } from "react-dropzone";
-import { Box, Typography, List, ListItem, ListItemText } from "@mui/material";
-import { UploadFile } from "@mui/icons-material";
+import { Box, Typography } from "@mui/material";
 import ImageIcon from "@mui/icons-material/Image";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { IconButton, Avatar } from "@mui/material";
@@ -81,7 +80,7 @@ const Dropzone: React.FC<DropzoneProps> = ({
         >
           {uploadedFiles.map((file, index) => {
             const isImage = file.type.startsWith("image/");
-            const preview = isImage ? URL.createObjectURL(file) : null;
+            const preview = isImage ? URL.createObjectURL(file) : undefined;
 
             return (
               <Box

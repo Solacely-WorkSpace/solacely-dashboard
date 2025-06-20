@@ -52,7 +52,7 @@ const ActionCell: FC<ActionCellProps> = ({ row, onDelete }) => {
   const menuActions = [
     {
       label: "Edit",
-      icon: <EditIcon sx={{ fontSize: 16 }} />,
+      icon: <EditIcon />,
       onClick: (rowId: number) => {
         handleClose();
         const path = SPACES_ROUTES.UPDATE_APARTMENT.PATH.replace(
@@ -64,7 +64,7 @@ const ActionCell: FC<ActionCellProps> = ({ row, onDelete }) => {
     },
     {
       label: "View",
-      icon: <ViewIcon sx={{ fontSize: 16 }} />,
+      icon: <ViewIcon  />,
       onClick: (rowId: number) => {
         handleClose();
         const path = SPACES_ROUTES.VIEW_APARTMENT.PATH.replace(
@@ -76,7 +76,7 @@ const ActionCell: FC<ActionCellProps> = ({ row, onDelete }) => {
     },
     {
       label: "Delete",
-      icon: <DeleteIcon sx={{ fontSize: 16 }} />,
+      icon: <DeleteIcon  />,
       onClick: (rowId: number) => {
         handleClose();
         setDeleteId(rowId);

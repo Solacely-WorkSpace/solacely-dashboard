@@ -83,9 +83,9 @@ const SideNavItem: React.FC<SideNavItemProps> = ({
           {!collapsed && <ListItemText primary={label} />}
           {subItems.length > 0 &&
             (open ? (
-              <ChevronUp sx={{ ml: "auto" }} />
+              <ChevronUp />
             ) : (
-              <ChevronRight sx={{ ml: "auto" }} />
+              <ChevronRight  />
             ))}
         </ListItemButton>
       </Tooltip>

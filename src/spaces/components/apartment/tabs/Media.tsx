@@ -13,9 +13,9 @@ const Media: FC<BasicInformationProps> = ({
   handeImageUpload,
   handeVideoUpload,
 }) => {
-  const onVideoUpload = (type:string, file:any)  => {
-    handeVideoUpload(type, file)
-  }
+  // const onVideoUpload = (type:string, file:any)  => {
+  //   handeVideoUpload(type, file)
+  // }
   return (
     <Container
       sx={{
@@ -43,7 +43,7 @@ const Media: FC<BasicInformationProps> = ({
             "image/*": [".png", ".jpg", ".jpeg"],
           }}
           multiple={true}
-          onUpload={handeVideoUpload}
+          onUpload={(files) => handeVideoUpload("vr", files[0])}
           label="Upload VR Video"
           text="Supports VR format"
         />
@@ -60,7 +60,7 @@ const Media: FC<BasicInformationProps> = ({
             "image/*": [".png", ".jpg", ".jpeg"],
           }}
           multiple={true}
-          onUpload={onVideoUpload}
+          onUpload={(files) => handeVideoUpload("video", files[0])}
           label="Upload Video"
           text="Supports MP4 format"
         />

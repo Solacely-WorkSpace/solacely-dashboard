@@ -31,8 +31,9 @@ const ApartmentView = () => {
   const fetchApartment = async () => {
     if (!id) return;
     try {
-      const { data } = await apartmentService.get(id);
-      setApartment(data as Apartment);
+      const response = await apartmentService.get(id);
+      const data = response.data as Apartment;
+      setApartment(data);
       if (data.images) {
         const grouped = transformImages(data.images);
         console.log(grouped);

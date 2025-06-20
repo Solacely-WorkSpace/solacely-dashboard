@@ -6,8 +6,9 @@ import ListItemButton from "./ListItemButton";
 import Tabs from "./Tabs";
 import Link from "./Link";
 import Table from "./Table";
+import type { Components, Theme } from "@mui/material";
 
-const componentsOverrides = (theme: any) => ({
+const componentsOverrides = (theme: Theme): Components<Theme> => ({
   ...Button(theme),
   ...Paper(theme),
   ...Drawer(theme),

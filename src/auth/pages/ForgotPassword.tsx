@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import { Check } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
 import { useForm, Controller } from "react-hook-form";
 import { authService } from "../services/AuthService";
 import AUTH_ROUTES from "../config/authRouteList";
@@ -21,9 +20,8 @@ type FormData = {
 };
 
 const ForgotPassword: React.FC = () => {
-  const { login } = useAuth();
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
+  // const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const {
@@ -50,9 +48,9 @@ const ForgotPassword: React.FC = () => {
     }
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword((show) => !show);
-  };
+  // const togglePasswordVisibility = () => {
+  //   setShowPassword((show) => !show);
+  // };
 
   const emailValue = watch("email");
 

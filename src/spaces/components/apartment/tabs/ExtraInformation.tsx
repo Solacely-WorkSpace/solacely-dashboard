@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import { useEffect, type FC } from "react";
 import { Box, Container } from "@mui/material";
 import AddapartmentDetail from "../../../components/apartment/AddapartmentDetail";
 import AddapartmentDeffects from "../../../components/apartment/AddapartmentDeffects";
@@ -8,6 +8,10 @@ interface BasicInformationProps {
 }
 
 const ExtraInformation: FC<BasicInformationProps> = ({ methods }) => {
+  useEffect(() => {
+    console.log(methods);
+  }, [])
+  
   return (
   
       <Container

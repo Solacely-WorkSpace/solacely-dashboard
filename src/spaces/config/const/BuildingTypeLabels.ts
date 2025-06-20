@@ -1,4 +1,4 @@
-import type { BuildingType } from "./ListingStatusLabels";
+import type { BuildingType } from "../../types/Apartment";
 
 export const BuildingTypeLabels: Record<BuildingType, string> = {
   apartment: "Apartment",

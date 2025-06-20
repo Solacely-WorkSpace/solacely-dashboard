@@ -67,7 +67,8 @@ const ApartmentList: FC = () => {
     setLoading(true);
 
     try {
-      const { data } = await apartmentService.getAll();
+      const response = await apartmentService.getAll();
+      const data = response.data as Apartment[];
       setApartments(data);
     } finally {
       setTimeout(() => {
@@ -87,11 +88,13 @@ const ApartmentList: FC = () => {
           fullWidth
           sx={{ width: 295 }}
           placeholder="Search for Apartment.."
-          startAdornment={
-            <InputAdornment position="start">
-              <SearchIcon />
-            </InputAdornment>
-          }
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
         />
 
         <Button
@@ -111,7 +114,7 @@ const ApartmentList: FC = () => {
             },
           }}
         >
-          <AddIcon sx={{ mr: 1 }} />
+          <AddIcon />
           Add new
         </Button>
       </Box>
@@ -124,7 +127,7 @@ const ApartmentList: FC = () => {
             justifyContent: "center",
             alignItems: "center",
             height: 300,
-            gap: 2, 
+            gap: 2,
           }}
         >
           <CircularProgress />

@@ -15,7 +15,6 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CloseIcon from "@mui/icons-material/Close";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { ImageTypeLabels } from "../config/const/ImageTypeLabels";
 import type { ImageType } from "../types/Apartment";
 
 interface ApartmentImageViewerProps {
@@ -24,7 +23,7 @@ interface ApartmentImageViewerProps {
 
 const ApartmentImageViewer: FC<ApartmentImageViewerProps> = ({ images }) => {
   console.log("images to render", images);
-  const categories = Object.keys(images);
+  const categories = Object.keys(images) as  ImageType[];
   const [selectedCategory, setSelectedCategory] =
     useState<ImageType>("bedroom");
   const [imageIndex, setImageIndex] = useState(0);
@@ -57,7 +56,7 @@ const ApartmentImageViewer: FC<ApartmentImageViewerProps> = ({ images }) => {
     setAnchorEl(null);
   };
 
-  const handleSelectCategory = (category: string) => {
+  const handleSelectCategory = (category: ImageType) => {
     setSelectedCategory(category);
     setImageIndex(0);
     setAnchorEl(null);

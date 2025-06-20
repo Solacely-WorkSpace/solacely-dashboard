@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { Box, Select, TextField, Typography, MenuItem, Grid } from "@mui/material";
+import { Select, TextField, Typography, MenuItem, Grid } from "@mui/material";
 
 import { ListingStatusLabels } from "../../config/const/ListingStatusLabels.ts";
 import { BuildingTypeLabels } from "../../config/const/BuildingTypeLabels.ts";

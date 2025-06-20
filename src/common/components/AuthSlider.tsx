@@ -18,7 +18,6 @@ const AuthSlider = () => {
   const animationFrameId = useRef<number | null>(null);
   const startTimeRef = useRef<number | null>(null);
 
-  const slides = ["", "", ""];
 
   const animateProgress = (timestamp: number) => {
     if (!startTimeRef.current) {

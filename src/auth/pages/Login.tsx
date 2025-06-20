@@ -10,8 +10,7 @@ import {
   CircularProgress,
   Link,
 } from "@mui/material";
-import { Visibility, VisibilityOff, CheckCircle, Check } from "@mui/icons-material";
-import {  useNavigate } from "react-router-dom";
+import { Visibility, VisibilityOff, Check } from "@mui/icons-material";
 import { useAuth } from "../hooks/useAuth";
 import { useForm, Controller } from "react-hook-form";
 import AUTH_ROUTES from "../config/authRouteList";
@@ -23,7 +22,6 @@ type FormData = {
 
 const Login: React.FC = () => {
   const { login } = useAuth();
-  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 

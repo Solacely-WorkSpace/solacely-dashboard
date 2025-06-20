@@ -6,7 +6,7 @@ const Link = (theme: Theme): Components<Theme> => ({
       root: {
         "&:hover": {
           textDecoration: "none",
-          color: "red", 
+          color: theme.palette.primary.main, 
         },
       },
     },

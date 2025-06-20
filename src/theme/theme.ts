@@ -13,8 +13,8 @@ const lightTheme = createTheme({
     mode: "light",
     ...palette,
   },
+  components: componentsOverrides as any, 
 });
-lightTheme.components = componentsOverrides(lightTheme);
 
 const darkTheme = createTheme({
   ...baseOptions,
@@ -22,7 +22,7 @@ const darkTheme = createTheme({
     mode: "dark",
     ...palette,
   },
+  components: componentsOverrides as any, 
 });
-darkTheme.components = componentsOverrides(darkTheme);
 
 export { lightTheme, darkTheme };

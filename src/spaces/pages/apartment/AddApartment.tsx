@@ -102,21 +102,34 @@ const AddApartment: FC = () => {
     const formData = new FormData();
 
     Object.entries(data).forEach(([key, value]) => {
-      if (Array.isArray(value) && key !== "images") {
+      if (key === "images") return;
+
+      if (Array.isArray(value)) {
         formData.append(key, JSON.stringify(value));
-      } else if (key !== "images") {
+      } else if (
+        typeof value === "string" ||
+        typeof value === "number" ||
+        typeof value === "boolean"
+      ) {
+        formData.append(key, String(value));
+      } else if (value instanceof Blob) {
         formData.append(key, value);
+      } else if (value != null) {
+        formData.append(key, JSON.stringify(value));
       }
     });
 
     Object.entries(images).forEach(([type, files]) => {
-      files.forEach((file, idx) => {
+      files.forEach((file) => {
         formData.append(`images[${type}][]`, file);
       });
     });
     try {
       if (id) {
-        await apartmentService.updateById(id, {amenities: "example amenities", ...formData});
+        await apartmentService.updateById(id, {
+          amenities: "example amenities",
+          ...formData,
+        });
       } else {
         await apartmentService.create(formData);
       }
@@ -135,6 +148,7 @@ const AddApartment: FC = () => {
   };
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    console.log("event:", event);
     setTabIndex(newValue);
   };
 
@@ -148,7 +162,9 @@ const AddApartment: FC = () => {
     console.log("images being set", images);
   };
 
-  const handleVideoUpload = (type: string, files: File[]) => {};
+  const handleVideoUpload = (type: string, files: File[]) => {
+    console.log("video files", type, files);
+  };
 
   return (
     <Paper elevation={3} sx={{ px: 2, boxShadow: "none", borderRadius: 0 }}>

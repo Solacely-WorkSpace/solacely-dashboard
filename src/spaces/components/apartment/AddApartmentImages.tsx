@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Button, Stack } from "@mui/material";
 import Dropzone from "../../../common/components/Dropzone";
 import type { ImageType } from "../../types/Apartment";
 import { ImageTypeLabels } from "../../config/const/ImageTypeLabels";

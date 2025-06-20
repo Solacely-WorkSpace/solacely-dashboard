@@ -1,4 +1,6 @@
-const Drawer = (theme: any) => ({
+import type { Theme } from "@mui/material";
+
+const Drawer = (theme: Theme) => ({
   MuiDrawer: {
     styleOverrides: {
       paper: {

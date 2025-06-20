@@ -6,6 +6,7 @@ interface BasicInformationProps {
 }
 
 const PaymentBreakDown: FC<BasicInformationProps> = ({ methods }) => {
+  console.log(methods);
   return (
     <Container
       sx={{
