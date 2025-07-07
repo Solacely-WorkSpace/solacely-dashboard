@@ -15,15 +15,45 @@ const Input = (theme: Theme): Components<Theme> => ({
         transition: theme.transitions.create(["border-color", "box-shadow"], {
           duration: theme.transitions.duration.short,
         }),
+        "&:-webkit-autofill": {
+            WebkitBoxShadow: "0 0 0 1000px white inset !important",
+            WebkitTextFillColor: "inherit !important",
+            caretColor: "inherit",
+            borderRadius: "inherit",
+            backgroundClip: "content-box !important",
+          },
+          "&:-webkit-autofill:focus": {
+            WebkitBoxShadow: "0 0 0 1000px white inset !important",
+            WebkitTextFillColor: "inherit !important",
+          },
+          "&:-webkit-autofill:hover": {
+            WebkitBoxShadow: "0 0 0 1000px white inset !important",
+            WebkitTextFillColor: "inherit !important",
+          },
         "& input": {
           padding: 0,
           height: "100%",
           boxSizing: "border-box",
           backgroundColor: "transparent",
+          "&:-webkit-autofill": {
+            WebkitBoxShadow: "0 0 0 1000px white inset !important",
+            WebkitTextFillColor: "inherit !important",
+            caretColor: "inherit",
+            borderRadius: "inherit",
+            backgroundClip: "content-box !important",
+          },
+          "&:-webkit-autofill:focus": {
+            WebkitBoxShadow: "0 0 0 1000px white inset !important",
+            WebkitTextFillColor: "inherit !important",
+          },
+          "&:-webkit-autofill:hover": {
+            WebkitBoxShadow: "0 0 0 1000px white inset !important",
+            WebkitTextFillColor: "inherit !important",
+          },
         },
         "&.small-input": {
           minHeight: 32,
-          height: 32
+          height: 32,
         },
         "& .MuiOutlinedInput-notchedOutline": {
           borderColor: "#E6E8F0",

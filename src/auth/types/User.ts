@@ -1,14 +1,46 @@
 export type User = {
-  id: number;
+  id: string;
+  name: string;
+  surname: string;
   email: string;
-  username: string;
-  full_name: string;
-  profile_image: string | null;
-  phone_number: string;
-  location: string;
-  is_tenant: boolean;
-  is_landlord: boolean;
-  is_staff: boolean;
-  is_verified: boolean;
-  created_at: string; 
+  password: string;
+  phone: string;
+  gender: string | null;
+  verifiedAt: string | null;
+  AgentProfile: AgentProfile[];
+  CustomerProfile: CustomerProfile[];
+  LandlordProfile: LandlordProfile[];
+  UserRoles: UserRole[];
+};
+
+export type AgentProfile = {
+  id: string;
+  userId: string;
+  gender: string | null;
+};
+
+export type CustomerProfile = {
+  id: string;
+  userId: string;
+  gender: string | null;
+  dob: string | null;
+  addressId: string | null;
+  phone: string;
+  whatsapp: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type LandlordProfile = {
+  id: string;
+  userId: string;
+  gender: string | null;
+};
+
+export type UserRole = {
+  id: string;
+  userId: string;
+  role: "USER" | "AGENT" | "CUSTOMER" | "LANDLORD" | "ADMIN";
+  createdAt: string;
+  updatedAt: string;
 };

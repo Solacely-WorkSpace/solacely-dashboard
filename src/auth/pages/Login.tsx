@@ -14,6 +14,7 @@ import { Visibility, VisibilityOff, Check } from "@mui/icons-material";
 import { useAuth } from "../hooks/useAuth";
 import { useForm, Controller } from "react-hook-form";
 import AUTH_ROUTES from "../config/authRouteList";
+import { useNavigate } from "react-router-dom";
 
 type FormData = {
   email: string;
@@ -22,6 +23,7 @@ type FormData = {
 
 const Login: React.FC = () => {
   const { login } = useAuth();
+  
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -41,9 +43,7 @@ const Login: React.FC = () => {
   const onSubmit = async (data: FormData) => {
     setLoading(true);
     try {
-      const response = await login(data);
-      console.log(response);
-      // navigate("/");
+      await login(data);
     } finally {
       setTimeout(() => {
         setLoading(false);

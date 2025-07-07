@@ -54,47 +54,48 @@ const AddApartment: FC = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (apartment) {
-      methods.reset({
-        title: apartment.title || "",
-        building_type: apartment.building_type || "",
-        status: apartment.status || "",
-        location: apartment.location || "",
-        description: apartment.description || "",
-        area_size_sqm: apartment.area_size_sqm || 0,
-        number_of_bedrooms: apartment.number_of_bedrooms || 0,
-        number_of_bathrooms: apartment.number_of_bathrooms || 0,
-        vrVideoFiles: [],
-        videoFiles: [],
-        images: [],
-      });
-    }
-  }, [apartment]);
-
   const methods = useForm({
     resolver: yupResolver(addApartmentSchema),
     defaultValues: {
       title: "",
-      price: 0,
-      building_type: "",
-      period: "",
-      status: "",
-      agent_email: "",
-      location: "",
       description: "",
-      area_size_sqm: 0,
-      number_of_bedrooms: 0,
-      number_of_bathrooms: 0,
-      garage: 0,
-      vrVideoFiles: [],
-      videoFiles: [],
-      images: [],
-      homeDetails: [{ key: "" }],
-      homeDefects: [{ key: "", value: "" }],
-      amenities: "example amenities",
+      agentId: "",
+      price: 0,
+      period: "MONTHLY",
+      type: "APARTMENT",
+      avalaibilty: "NOW",
+      spaceType: "SHARED",
+      buidlingType: "HOUSE",
+      address: {
+        street: "",
+        city: "",
+        state: "",
+        country: "",
+        zipCode: "",
+        latitude: 0,
+        longitude: 0,
+      },
+      details: {
+        phone: "",
+        email: "",
+        area: 0,
+        bedrooms: 0,
+        bathrooms: 0,
+        garage: 0,
+        airCondition: 0,
+        desks: 0,
+        capacity: 0,
+      },
+      paymentBreak: {
+        ligthFee: 0,
+        securityFee: 0,
+        estateDue: 0,
+        bin: 0,
+      },
+      files: [],
     },
   });
+
   const { handleSubmit } = methods;
 
   const onSubmit = async (data: any) => {
@@ -102,28 +103,25 @@ const AddApartment: FC = () => {
     const formData = new FormData();
 
     Object.entries(data).forEach(([key, value]) => {
-      if (key === "images") return;
+      if (key === "files") return;
 
-      if (Array.isArray(value)) {
-        formData.append(key, JSON.stringify(value));
-      } else if (
-        typeof value === "string" ||
-        typeof value === "number" ||
-        typeof value === "boolean"
+      if (
+        typeof value === "object" &&
+        value !== null &&
+        !Array.isArray(value)
       ) {
-        formData.append(key, String(value));
-      } else if (value instanceof Blob) {
-        formData.append(key, value);
-      } else if (value != null) {
         formData.append(key, JSON.stringify(value));
+      } else {
+        formData.append(key, String(value));
       }
     });
 
     Object.entries(images).forEach(([type, files]) => {
       files.forEach((file) => {
-        formData.append(`images[${type}][]`, file);
+        formData.append(`files`, JSON.stringify({ fileId: file.id, type }));
       });
     });
+
     try {
       if (id) {
         await apartmentService.updateById(id, {

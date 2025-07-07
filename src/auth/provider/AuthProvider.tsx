@@ -7,12 +7,14 @@ import {
 } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { authService } from "../services/AuthService";
+import type { User, UserRole } from "../types/User";
 
 const AuthActionType = {
   INITIALIZE: "INITIALIZE",
   LOGIN: "LOGIN",
   LOGOUT: "LOGOUT",
   ERROR: "ERROR",
+  ROLE_SWITCH: "ROLE_SWITCH",
 } as const;
 
 type AuthActionType = (typeof AuthActionType)[keyof typeof AuthActionType];
@@ -21,13 +23,23 @@ interface AuthAction {
   type: AuthActionType;
   payload?: {
     isAuthenticated: boolean;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    user?: any;
+    user?: User;
     error?: string;
+    activeRole?: UserRole;
   };
 }
 
-const initialState = { isAuthenticated: false, user: null, error: "" };
+const initialState: {
+  isAuthenticated: boolean;
+  error: string;
+  user: User | null;
+  activeRole: UserRole | null;
+} = {
+  isAuthenticated: false,
+  user: null,
+  error: "",
+  activeRole: null,
+};
 
 function authReducer(state: typeof initialState, action: AuthAction) {
   switch (action.type) {
@@ -37,11 +49,17 @@ function authReducer(state: typeof initialState, action: AuthAction) {
         ...state,
         isAuthenticated: action.payload?.isAuthenticated || false,
         user: action.payload?.user ?? state.user,
+        activeRole: action.payload?.activeRole ?? state.activeRole,
       };
     case AuthActionType.ERROR:
       return { ...state, error: action.payload?.error ?? state.error };
     case AuthActionType.LOGOUT:
-      return { ...state, isAuthenticated: false };
+      return initialState;
+    case AuthActionType.ROLE_SWITCH:
+      return {
+        ...state,
+        activeRole: action.payload?.activeRole ?? null,
+      };
     default:
       return state;
   }
@@ -53,7 +71,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const initialize = async () => {
     try {
-      const { isAuthenticated, error } = await authService.verify();
+      const { isAuthenticated, error } = await authService.refresh();
       if (error) {
         dispatch({
           type: AuthActionType.ERROR,
@@ -61,24 +79,26 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         });
         return;
       }
-      let user = localStorage.getItem("user");
-      if (user) {
-        user = JSON.parse(user);
+      const storedUser = localStorage.getItem("user");
+      let user: User | null = null;
+      if (storedUser) {
+        user = JSON.parse(storedUser) as User;
       }
-      if (!isAuthenticated) {
-        dispatch({
-          type: AuthActionType.LOGOUT,
-        });
+
+      if (!isAuthenticated || !user) {
+        dispatch({ type: AuthActionType.LOGOUT });
+        return;
       }
+
+      const defaultRole = user?.UserRoles?.[0] || null;
+
       dispatch({
         type: AuthActionType.INITIALIZE,
-        payload: { isAuthenticated, user },
+        payload: { isAuthenticated, user, activeRole: defaultRole },
       });
     } catch (error) {
       console.error("Failed to initialize authentication state", error);
-      dispatch({
-        type: AuthActionType.LOGOUT,
-      });
+      dispatch({ type: AuthActionType.LOGOUT });
     } finally {
       setLoading(false);
     }
@@ -103,6 +123,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         });
         return;
       }
+
+
       dispatch({
         type: AuthActionType.LOGIN,
         payload: { isAuthenticated, user },
@@ -117,8 +139,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       await authService.logout();
       dispatch({ type: AuthActionType.LOGOUT });
     } catch (error) {
-      console.error("Logut failed", error);
+      console.error("Logout failed", error);
     }
+  };
+
+  const setActiveRole = (role: UserRole) => {
+    dispatch({
+      type: AuthActionType.ROLE_SWITCH,
+      payload: { activeRole: role, isAuthenticated: true },
+    });
   };
 
   const authContextValue = useMemo(
@@ -126,6 +155,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       state,
       login,
       logout,
+      setActiveRole,
     }),
     [state]
   );

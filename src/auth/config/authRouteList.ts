@@ -1,6 +1,7 @@
 const AUTH_ROUTES = {
   BASE: { PATH: "/auth", NAME: "Auth" },
   LOGIN: { PATH: "/auth/login", NAME: "Login" },
+  ROLE_SWITCH: { PATH: "/auth/role-switch", NAME: "Select Role" },
   REGISTER: { PATH: "/auth/register", NAME: "Register" },
   RESET_PASSWORD: { PATH: "/auth/password/reset", NAME: "Reset Password" },
   RESET_PASSWORD_VERIFY: { PATH: "/auth/password/verify", NAME: "Reset Password" },

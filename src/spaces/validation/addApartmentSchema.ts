@@ -1,58 +1,71 @@
 import * as yup from "yup";
 
 export const addApartmentSchema = yup.object().shape({
-  title: yup.string().required("Property title is required"),
-  price: yup
-    .number()
-    .transform((value, originalValue) => {
-      if (typeof originalValue === "string") {
-        const numeric = Number(originalValue.replace(/[^0-9.-]+/g, ""));
-        return isNaN(numeric) ? undefined : numeric;
-      }
-      return value;
-    })
-    .typeError("Rent price must be a number")
-    .required("Rent price is required"),
+  title: yup.string().required("Title is required"),
+  description: yup.string().required("Description is required"),
+  agentId: yup.string().uuid().optional(),
 
-  building_type: yup.string().required("Building type is required"),
-  period: yup.string(),
-  status: yup.string().required("Availability is required"),
-  agent_email: yup.string(),
-  location: yup.string().required("Property address is required"),
-  description: yup.string().required("Details are required"),
-  area_size_sqm: yup
-    .number()
-    .typeError("Area size must be a number")
-    .positive("Must be a positive number")
-    .required("Area size is required"),
-  number_of_bedrooms: yup
-    .number()
-    .typeError("Bedrooms must be a number")
-    .integer()
-    .min(0)
-    .required("Number of bedrooms is required"),
-  number_of_bathrooms: yup
-    .number()
-    .typeError("Bathrooms must be a number")
-    .integer()
-    .min(0)
-    .required("Number of bathrooms is required"),
-  garage: yup.number().typeError("Garage must be a number").integer().min(0),
-  vrVideoFiles: yup.array().of(yup.mixed<File>()),
-  videoFiles: yup.array().of(yup.mixed<File>()),
-  images: yup.array().of(yup.mixed<File>()),
-  homeDetails: yup.array().of(
-    yup.object().shape({
-      key: yup.string(),
-    })
-  ),
+  price: yup.number().positive().optional(),
+  period: yup
+    .mixed()
+    .oneOf(["MONTHLY", "WEEKLY", "DAILY", "YEARLY"])
+    .optional(),
+  type: yup
+    .mixed()
+    .oneOf(["APARTMENT", "HOUSE", "OFFICE", "SHOP"])
+    .optional(),
+  avalaibilty: yup
+    .mixed()
+    .oneOf(["NOW", "SOON", "FUTURE"])
+    .optional(),
+  spaceType: yup
+    .mixed()
+    .oneOf(["SHARED", "PRIVATE"])
+    .optional(),
+  buidlingType: yup
+    .mixed()
+    .oneOf(["HOUSE", "FLAT", "TOWNHOUSE", "DUPLEX", "VILLA"])
+    .optional(),
 
-  homeDefects: yup.array().of(
-    yup.object().shape({
-      key: yup.string(),
-      value: yup.string(),
-    })
-  ),
-  amenities: yup.string(),
+  address: yup.object().shape({
+    street: yup.string().optional().nullable(),
+    city: yup.string().optional().nullable(),
+    state: yup.string().optional().nullable(),
+    country: yup.string().optional().nullable(),
+    zipCode: yup.string().optional().nullable(),
+    latitude: yup.number().optional(),
+    longitude: yup.number().optional(),
+  }),
 
+  details: yup.object().shape({
+    phone: yup.string().optional().nullable(),
+    email: yup.string().email().optional().nullable(),
+    area: yup.number().required("Area is required"),
+    bedrooms: yup.number().required("Bedrooms are required"),
+    bathrooms: yup.number().optional(),
+    garage: yup.number().optional(),
+    airCondition: yup.number().optional(),
+    desks: yup.number().optional(),
+    capacity: yup.number().optional(),
+  }),
+
+  paymentBreak: yup.object().shape({
+    ligthFee: yup.number().required("Light Fee is required"),
+    securityFee: yup.number().required("Security Fee is required"),
+    estateDue: yup.number().required("Estate Due is required"),
+    bin: yup.number().required("Bin Fee is required"),
+  }),
+
+  files: yup
+    .array()
+    .of(
+      yup.object().shape({
+        fileId: yup.string().uuid().required(),
+        type: yup
+          .mixed()
+          .oneOf(["IMAGE", "VIDEO", "VR", "FLOOR_PLAN"])
+          .required(),
+      })
+    )
+    .optional(),
 });

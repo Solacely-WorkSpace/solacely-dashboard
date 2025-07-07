@@ -15,10 +15,11 @@ class BaseAPIService {
     });
 
     this.axiosInstance.interceptors.request.use((config) => {
-      const token = this.getAccessToken();
-
-      if (token && config.headers) {
-        config.headers["Authorization"] = `Bearer ${token}`;
+      if (!config.headers.Authorization) {
+        const token = this.getAccessToken();
+        if (token && config.headers) {
+          config.headers["Authorization"] = `Bearer ${token}`;
+        }
       }
       return config;
     });
@@ -35,8 +36,8 @@ class BaseAPIService {
   }
 
   private getAccessToken(): string | null {
-    const token = localStorage.getItem('accessToken');
-    return token ? (JSON.parse(token)) : null;
+    const token = localStorage.getItem("accessToken");
+    return token ? JSON.parse(token) : null;
   }
 
   public get<T>(

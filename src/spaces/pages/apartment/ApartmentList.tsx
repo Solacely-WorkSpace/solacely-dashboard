@@ -171,7 +171,7 @@ const ApartmentList: FC = () => {
             </TableHead>
 
             <TableBody>
-              {apartments.map((apartment) => (
+              {apartments.length> 0 && apartments.map((apartment) => (
                 <TableRow key={apartment.id}>
                   <TableCell sx={{ fontWeight: "bold" }}>
                     <Box

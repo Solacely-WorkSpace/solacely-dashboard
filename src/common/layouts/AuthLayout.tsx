@@ -4,6 +4,7 @@ import SideNav from "../components/SideNav";
 import TopNav from "../components/TopNav";
 import { useAuth } from "../../auth/hooks/useAuth";
 import { useState, type FC, type ReactNode } from "react";
+import AUTH_ROUTES from "../../auth/config/authRouteList";
 
 interface AuthLayoutProps {
   children?: ReactNode;
@@ -14,26 +15,31 @@ const AuthLayout: FC<AuthLayoutProps> = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
 
   if (!state.isAuthenticated) {
-    return <Navigate to="/auth/login" />;
+    return <Navigate to={AUTH_ROUTES.LOGIN.PATH}/>;
+  }
+
+  if (state.user && !state.activeRole && state.user.UserRoles.length > 0) {
+     return <Navigate to={AUTH_ROUTES.ROLE_SWITCH.PATH} />;
   }
 
   return (
-    <Box sx={{ display: "flex", minHeight: "100vh", width: '100vw' }}>
-      <SideNav collapsed={collapsed} toggleNav={() => setCollapsed(!collapsed)} />
+    <Box sx={{ display: "flex", minHeight: "100vh", width: "100vw" }}>
+      <SideNav
+        collapsed={collapsed}
+        toggleNav={() => setCollapsed(!collapsed)}
+      />
       <Box
         component="main"
         sx={{
           flexGrow: 1,
           transition: "margin-left 0.3s",
-          width: '100%',
+          width: "100%",
           padding: "20px",
-          minHeight: "100%"
+          minHeight: "100%",
         }}
       >
-      <TopNav />
-       <Box sx={{ padding: "20px",}}>
-         {children || <Outlet />}
-       </Box>
+        <TopNav />
+        <Box sx={{ padding: "20px" }}>{children || <Outlet />}</Box>
       </Box>
     </Box>
   );
